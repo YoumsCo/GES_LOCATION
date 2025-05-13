@@ -32,12 +32,12 @@ if (file_get_contents("php://input")) {
 
     function db(): PDOException|PDO
     {
-        $database = "location_immobilier";
-        $user = "root";
-        $password = "";
-        $server = "localhost";
-        $port = "3306";
-        $charset = "UTF8";
+        $database = $_ENV["DB_NAME"];
+        $user = $_ENV["USER"];
+        $password = $_ENV["PASSWORD"];
+        $server = $_ENV["HOST"];
+        $port = $_ENV["PORT"];
+        $charset = $_ENV["CHARSET"];
         try {
             $dsn = "mysql:host={$server};dbname={$database};port={$port};charset={$charset}";
             $pdo = new PDO($dsn, $user, $password);
