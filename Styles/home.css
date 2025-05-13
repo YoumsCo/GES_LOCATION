@@ -1,0 +1,1003 @@
+:root {
+    --home-background: black;
+    --home-background-rgba: rgba(0, 0, 0, 0.669);
+    --home-default-transition: all .4s ease-in-out;
+    --home-scroll-background: transparent;
+    --home-scroll-color: rgba(255, 255, 255, 0.443);
+    --home-default-color: whitesmoke;
+    --home-button-color: rgba(2, 2, 27, 0.957);
+    --home-button-opacity: 0.8;
+    --home-ads-buttons-background: rgba(0, 0, 0, 0.345);
+    --home-box-z-index: 500;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    behavior: smooth;
+    font-family: 'Times New Roman', serif;
+}
+
+*::-webkit-scrollbar {
+    background: var(--home-scroll-background);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--home-scroll-color) !important;
+    border-radius: 20px;
+}
+
+body {
+    transition: var(--home-default-transition);
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    background: var(--home-background);
+    color: var(--home-default-color);
+    overflow-x: hidden;
+}
+
+#container {
+    transition: var(--home-default-transition);
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#container #space {
+    transition: var(--home-default-transition);
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+}
+#container #space {
+    transition: var(--home-default-transition);
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+#container #space .space-buttons {
+    transition: var(--home-default-transition);
+    position: relative;
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--home-default-color);
+    color: var(--home-button-color);
+    font-weight: 900;
+    opacity: var(--home-button-opacity);
+    border: 4px solid var(--home-default-color);
+}
+
+@media screen and (max-width: 500px) {
+    #container #space .space-buttons {
+        transition: var(--home-default-transition);
+        width: 100px;
+        height: 35px;
+        font-size: 12pt;
+    }
+
+}
+
+#container #space .space-buttons:active {
+    transition: var(--home-default-transition);
+    transform: scale(0.7);
+}
+
+#container #space .space-buttons:hover {
+    transition: var(--home-default-transition);
+    cursor: pointer;
+    background: 0 0;
+    box-shadow: 0 3px 10px var(--home-default-color);
+}
+
+#container #space .space-buttons a {
+    transition: var(--home-default-transition);
+    color: var(--home-button-color);
+    font-size: 11pt;
+    text-decoration: none;
+}
+
+#container #space .space-buttons:hover a {
+    transition: var(--home-default-transition);
+    color: var(--home-default-color);
+}
+
+#container #space .space-buttons::before {
+    transition: var(--home-default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--home-background);
+}
+
+#container #space .space-buttons:hover::before {
+    transition: var(--home-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #space .space-buttons::after {
+    transition: var(--home-default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--home-background);
+}
+
+#container #space .space-buttons:hover::after {
+    transition: var(--home-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #space .space-buttons:hover::after {
+    transition: var(--home-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #space #space-profile {
+    transition: var(--home-default-transition);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#container #space #theme-icon {
+    transition: var(--home-default-transition);
+    font-size: 20pt;
+    color: var(--home-default-color);
+    transform: translateY(2px);
+    filter: drop-shadow(0 5px 5px var(--home-default-color));
+    margin-right: 10px;
+}
+
+#container #space #theme-icon:hover {
+    transition: var(--home-default-transition);
+    transform: translateY(2px) scale(1.1);
+}
+
+#container #space #theme-icon:active {
+    transition: var(--home-default-transition);
+    transform: translateY(2px) scale(.7);
+}
+
+@media screen and (max-width: 500px) {
+    #container #space #theme-icon {
+        display: none;
+    }
+}
+
+#container #header {
+    transition: var(--home-default-transition);
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+}
+
+#container .blur {
+    background: var(--home-background);
+    z-index: 10;
+}
+
+#container #header #picture {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#container #header #picture img {
+    transition: var(--home-default-transition);
+    position: relative;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 800px) {
+    #container #header #picture img {
+        transition: var(--home-default-transition);
+        width: 40px;
+        height: 40px;
+    }
+}
+
+#container #filter {
+    transition: var(--home-default-transition);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 20px;
+    width: 90%;
+    overflow: auto;
+}
+
+@media screen and (max-width: 600px) {
+    #container #filter {
+        justify-content: start;
+        gap: 30px;
+    }
+}
+
+#container #filter i {
+    transition: var(--home-default-transition);
+    font-size: 13.5pt;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    text-wrap: nowrap;
+}
+
+#container #filter .filter-buttons {
+    transition: var(--home-default-transition);
+    position: relative;
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--home-default-color);
+    color: var(--home-button-color);
+    font-weight: 900;
+    opacity: var(--home-button-opacity);
+    border: 4px solid var(--home-default-color);
+    color: var(--home-button-color);
+    font-size: 13pt;
+}
+
+#container #filter .filter-buttons.active-choise {
+    transition: var(--home-default-transition);
+    cursor: pointer;
+    background: transparent;
+    box-shadow: inset 0 3px 10px var(--home-default-color),
+    inset 0 -3px 10px var(--home-default-color);
+    color: var(--home-default-color);
+}
+
+@media screen and (max-width: 600px) {
+    #container #filter .filter-buttons {
+        transition: var(--home-default-transition);
+        width: 200px !important;
+        font-size: 10pt;
+    }
+
+    #container #filter .filter-buttons.active-choise {
+        transition: var(--home-default-transition);
+        box-shadow: 0 0 30px var(--home-default-color);
+    }
+}
+
+#container #filter .filter-buttons.active-choise:hover {
+    transition: var(--home-default-transition);
+    background: var(--home-default-color);
+    color: var(--home-button-color);
+}
+
+#container #filter .filter-buttons.active-choise::before {
+    transition: var(--home-default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--home-background);
+}
+
+#container #filter .filter-buttons.active-choise:hover:before {
+    transition: var(--home-default-transition);
+    left: 50%;
+    width: 0;
+}
+
+#container #filter .filter-buttons.active-choise::after {
+    transition: var(--home-default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--home-background);
+}
+
+#container #filter .filter-buttons.active-choise:hover::after {
+    transition: var(--home-default-transition);
+    left: 50%;
+    width: 0;
+}
+
+#container #filter .filter-buttons:active {
+    transition: var(--home-default-transition);
+    transform: scale(0.7);
+}
+
+#container #filter .filter-buttons:hover {
+    transition: var(--home-default-transition);
+    cursor: pointer;
+    background: transparent;
+    box-shadow: inset 0 3px 10px var(--home-default-color),
+        inset 0 -3px 10px var(--home-default-color);
+    color: var(--home-default-color);
+}
+
+#container #filter .filter-buttons::before {
+    transition: var(--home-default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--home-background);
+}
+
+#container #filter .filter-buttons:hover::before {
+    transition: var(--home-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #filter .filter-buttons::after {
+    transition: var(--home-default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--home-background);
+}
+
+#container #filter .filter-buttons:hover::after {
+    transition: var(--home-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #content {
+    transition: var(--home-default-transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    gap: 30px;
+}
+
+#container #content .habitat {
+    transition: var(--home-default-transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 90%;
+    height: 350px;
+    text-align: justify;
+    margin: 20px 0;
+}
+
+#container #content .habitat:nth-child(odd) {
+    flex-direction: row;
+}
+
+#container #content .habitat:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+
+#container #content .habitat.no-choised {
+    transition: var(--home-default-transition);
+    display: none !important;
+}
+
+@media screen and (max-width: 600px) {
+    #container #content .habitat {
+        transition: var(--home-default-transition);
+        flex-direction: column !important;
+        height: 450px;
+        gap: 10px;
+    }
+
+    #container #content .habitat:hover {
+        transition: var(--home-default-transition);
+        transform: scale(1.05);
+    }
+}
+
+#container #content .habitat:first-child {
+    transition: var(--home-default-transition);
+    padding-top: 20px;
+}
+
+#container #content .habitat:not(:first-child) {
+    transition: var(--home-default-transition);
+    padding: 0 30px 0 10px;
+}
+
+#container .habitat .images {
+    transition: var(--home-default-transition);
+    position: relative;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    background-blend-mode: multiply;
+}
+
+@media screen and (max-width: 600px) {
+    #container .habitat .images {
+        transition: var(--home-default-transition);
+        width: 100%;
+        height: 60%;
+    }
+}
+
+#container .habitat .images .img {
+    transition: var(--home-default-transition);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+}
+
+#container .habitat .images .img:hover {
+    transition: var(--home-default-transition);
+    transform: scale(1.1);
+}
+
+#container .habitat .images .image-loader {
+    transition: var(--home-default-transition);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--home-background);
+    z-index: 2;
+    opacity: 1;
+}
+
+#container .habitat .images .image-loader.loader-hidden {
+    transition: all 1s ease-in-out;
+    opacity: 0 !important;
+    z-index: -1 !important;
+}
+
+#container .habitat .images .image-loader::before {
+    transition: var(--home-default-transition);
+    position: absolute;
+    content: "";
+    left: 45%;
+    top: 40%;
+    width: 40px;
+    height: 40px;
+    border: 10px solid var(--home-default-color);
+    border-left-color: var(--home-scroll-background);
+    border-right-color: var(--home-scroll-background);
+    border-radius: 50%;
+    animation: loader-animated 1s infinite linear;
+}
+
+@keyframes loader-animated {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#container .habitat .description {
+    transition: var(--home-default-transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    #container .habitat .description {
+        transition: var(--home-default-transition);
+        width: 100%;
+        height: 40%;
+        gap: 20px;
+    }
+}
+
+#container .habitat .description .text {
+    transition: var(--home-default-transition);
+    width: 100%;
+    height: 80%;
+    overflow: auto;
+    padding: 10px;
+}
+
+#container .habitat .description .text::-webkit-scrollbar {
+    background: var(--home-scroll-background);
+}
+
+#container .habitat .description .text::-webkit-scrollbar-thumb {
+    background: var(--home-scroll-color);
+    border-radius: 20px;
+}
+
+#container .habitat .description .button {
+    transition: var(--home-default-transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+}
+
+#container .habitat .description .button button {
+    transition: var(--home-default-transition);
+    position: relative;
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--home-default-color);
+    color: var(--home-button-color);
+    font-weight: 900;
+    opacity: var(--home-button-opacity);
+    border: 4px solid var(--home-default-color);
+    color: var(--home-button-color);
+}
+
+#container .habitat .description .button button:active a,
+#container .habitat .description .button button:active {
+    transition: var(--home-default-transition);
+    transform: scale(0.7);
+}
+
+#container .habitat .description .button button:hover {
+    transition: var(--home-default-transition);
+    cursor: pointer;
+    background: transparent;
+    box-shadow: 0 3px 10px var(--home-default-color);
+}
+
+#container .habitat .description .button button a {
+    transition: var(--home-default-transition);
+    color: var(--home-button-color);
+    font-size: 11pt;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: -10;
+    width: 100%;
+    height: 100%;
+}
+
+#container .habitat .description .button button:hover a,
+#container .habitat .description .button button:hover {
+    transition: var(--home-default-transition);
+    color: var(--home-default-color);
+}
+
+#container .habitat .description .button button::before {
+    transition: var(--home-default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--home-background);
+}
+
+#container .habitat .description .button button:hover::before {
+    transition: var(--home-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container .habitat .description .button button::after {
+    transition: var(--home-default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--home-background);
+}
+
+#container .habitat .description .button button:hover::after {
+    transition: var(--home-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container .habitat .description .button button .fa {
+    transition: var(--home-default-transition);
+    position: absolute;
+    top: 12%;
+    left: 10px;
+    font-size: 15pt;
+}
+
+#container .ads {
+    transition: var(--home-default-transition);
+    position: relative;
+    width: 90%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+#container .ads.ads-hidden {
+    transition: var(--home-default-transition);
+    display: none !important;
+}
+
+#container .ads .info {
+    transition: var(--home-default-transition);
+    font-size: 14pt;
+    color: var(--home-default-color);
+}
+
+#container .ads .ads-img {
+    transition: var(--home-default-transition);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+#container .ads .ads-img .ads-images {
+    transition: var(--home-default-transition);
+    width: 50%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    object-position: center;
+}
+
+#container .ads .ads-buttons {
+    transition: var(--home-default-transition);
+    position: absolute;
+    left: 0;
+    top: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    background: var(--home-ads-buttons-background);
+}
+
+#container .ads .ads-buttons:hover {
+    transition: var(--home-default-transition);
+    background: var(--home-scroll-background);
+}
+
+#container .ads .ads-buttons .fa {
+    transition: var(--home-default-transition);
+    font-size: 23pt;
+    opacity: .5;
+    color: var(--home-default-color);
+}
+
+#container .ads .ads-buttons .fa:hover {
+    transition: var(--home-default-transition);
+    transform: scale(1.2);
+}
+
+#container .ads .ads-buttons .fa:active {
+    transition: var(--home-default-transition);
+    transform: scale(.7) !important;
+}
+
+#container .ads:hover .ads-buttons .fa {
+    transition: var(--home-default-transition);
+    opacity: 1;
+}
+
+#container #scroll-top-button {
+    transition: var(--home-default-transition);
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    z-index: -1;
+    opacity: 0;
+}
+
+#container #scroll-top-button.show-button {
+    transition: var(--home-default-transition);
+    z-index: 10 !important;
+    opacity: .7 !important;
+}
+
+#container #scroll-top-button.show-button:hover {
+    transition: var(--home-default-transition);
+    transform: scale(1.1);
+}
+
+#container #scroll-top-button.show-button:active {
+    transition: var(--home-default-transition);
+    transform: scale(.7) !important;
+}
+
+#container #scroll-top-button .fa {
+    transition: var(--home-default-transition);
+    font-size: 33pt;
+    color: var(--home-default-color);
+}
+
+#container #scroll-last-position-button {
+    transition: var(--home-default-transition);
+    position: fixed;
+    bottom: 50px;
+    left: 20px;
+    z-index: -1;
+    opacity: 0;
+}
+
+#container #scroll-last-position-button.show-button {
+    transition: var(--home-default-transition);
+    z-index: 10 !important;
+    opacity: .6 !important;
+}
+
+#container #scroll-last-position-button.show-button:hover {
+    transition: var(--home-default-transition);
+    transform: scale(1.1);
+}
+
+#container #scroll-last-position-button.show-button:active {
+    transition: var(--home-default-transition);
+    transform: scale(.7) !important;
+}
+
+#container #scroll-last-position-button .fa {
+    transition: var(--home-default-transition);
+    font-size: 33pt;
+    color: var(--home-default-color);
+}
+
+#container hr {
+    transition: var(--home-default-transition);
+    width: 100%;
+    height: 5px;
+    background: var(--home-default-color);
+    margin-bottom: 10px;
+}
+
+#container #content #reviews {
+    transition: var(--home-default-transition);
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+#container #content #reviews #review-first {
+    transition: var(--home-default-transition);
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+#container #content #reviews #review-first a {
+    transition: var(--home-default-transition);
+    position: relative;
+    width: 130px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--home-default-color);
+    color: var(--home-button-color);
+    font-weight: 900;
+    opacity: var(--home-button-opacity);
+    border: 4px solid var(--home-default-color);
+    color: var(--home-button-color);
+    font-size: 13pt;
+    text-decoration: none;
+}
+
+#container #content #reviews #review-first a:active {
+    transition: var(--home-default-transition);
+    transform: scale(0.7);
+}
+
+#container #content #reviews #review-first a:hover {
+    transition: var(--home-default-transition);
+    cursor: pointer;
+    background: transparent;
+    box-shadow: 0 3px 10px var(--home-default-color);
+}
+
+#container #content #reviews #review-first a:hover {
+    transition: var(--home-default-transition);
+    color: var(--home-default-color);
+}
+
+#container #content #reviews #review-first a::before {
+    transition: var(--home-default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--home-background);
+}
+
+#container #content #reviews #review-first a:hover::before {
+    transition: var(--home-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #content #reviews #review-first a::after {
+    transition: var(--home-default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--home-background);
+}
+
+#container #content #reviews #review-first a:hover::after {
+    transition: var(--home-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #content .review-content {
+    transition: var(--home-default-transition);
+    width: 100%;
+    border: 2px solid var(--home-default-color);
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+#container #content .review-content .review-header {
+    transition: var(--home-default-transition);
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+#container #content .review-content .review-header .review-img {
+    transition: var(--home-default-transition);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    aspect-ratio: 16/9;
+    object-position: center;
+}
+
+@media screen and (max-width: 600px) {
+    #container #content .review-content .review-header .review-img {
+        transition: var(--home-default-transition);
+        width: 50px;
+        height: 50px;
+    }
+}
+
+#container #content .review-content .review-header .review-name-time {
+    transition: var(--home-default-transition);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+    flex-direction: column;
+}
+
+#container #content .review-content .review-header .review-name-time span {
+    transition: var(--home-default-transition);
+    display: inline-block;
+    width: 90%;
+    font-size: 13pt;
+    letter-spacing: 2px;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    overflow: hidden;
+}
+
+
+@media screen and (max-width: 600px) {
+    #container #content .review-content .review-header .name {
+        transition: var(--home-default-transition);
+        width: 200px !important;
+    }
+}
+
+#container #content .review-content .review-header .review-name-time #review-stars {
+    transition: var(--home-default-transition);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+}
+
+#container #content .review-content .review-body {
+    transition: var(--home-default-transition);
+    width: 100%;
+    height: 100px;
+    border-top: 2px solid var(--home-default-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#container #content .review-content .review-body p {
+    transition: var(--home-default-transition);
+    width: 100%;
+    height: 100%;
+    font-size: 13pt;
+    text-align: justify;
+    padding: 5px 10px;
+    overflow: auto;
+}

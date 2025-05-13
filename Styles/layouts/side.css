@@ -1,0 +1,417 @@
+:root {
+    --sidebar-width: 0;
+    /* --sidebar-width: 250px; */
+    --menu-left: 10px;
+    --menu-top: 5px;
+    --side-background-prefer: rgba(1, 38, 1, 0.381);
+    --side-border-bottom-prefer: rgba(245, 245, 245, 0.164);
+    --side-link-background: black;
+    --side-default-transition: all .4s ease-in-out;
+    --side-scroll-background: transparent;
+    --side-scroll-color: aquamarine;
+    --side-default-color: whitesmoke;
+    --side-default-z-index: 100;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#side-container {
+    transition: var(--side-default-transition);
+    position: fixed;
+    display: flex;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: var(--sidebar-width);
+    background: var(--side-background-prefer);
+    height: 100vh;
+    overflow: hidden;
+    list-style: none;
+    color: var(--side-default-color);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    z-index: var(--side-default-z-index);
+}
+
+#side-container #side-header {
+    transition: var(--side-default-transition);
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 2px solid var(--side-border-bottom-prefer);
+    font-size: 20pt;
+    padding: 0 10px 20px 0;
+}
+
+.hide-side-header {
+    transition: all .05s ease-in-out;
+    opacity: 0;
+    z-index: -100;
+}
+
+#side-container #side-header-picture {
+    transition: var(--side-default-transition);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    aspect-ratio: 16/9;
+    border: 3px solid var(--side-default-color);
+}
+
+#side-container #side-header-name-icons {
+    transition: var(--side-default-transition);
+    width: 50%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 5px;
+}
+
+#side-container #side-header-name-icons #side-header-name {
+    transition: var(--side-default-transition);
+    width: 100%;
+    height: 50%;
+}
+
+#side-container #side-header-name-icons #side-header-name #name {
+    transition: var(--side-default-transition);
+    display: inline-block;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-wrap: nowrap;
+    -webkit-text-size-adjust: auto;
+    text-size-adjust: auto;
+    letter-spacing: 5px;
+    cursor: not-allowed;
+}
+
+#side-container #side-header-name-icons #side-header-icons {
+    transition: var(--side-default-transition);
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    gap: 20px;
+}
+
+#side-container #side-header-name-icons #side-header-icons i,
+#side-container #side-header-name-icons #side-header-icons a {
+    transition: var(--side-default-transition);
+    position: relative;
+    text-decoration: none;
+    color: var(--side-default-color);
+    cursor: pointer;
+}
+
+#side-container #side-header-name-icons #side-header-icons a#notification-icon::after {
+    transition: var(--side-default-transition);
+    position: absolute;
+    content: attr(count);
+    top: 0;
+    right: 0;
+    transform: translate(10px, -10px);
+    font-size: 15pt;
+    color: var(--side-default-color);
+    text-shadow: 0 5px 4px var(--side-default-color);
+    font-weight: 900;
+}
+
+#side-container #side-header-name-icons #side-header-icons i:hover,
+#side-container #side-header-name-icons #side-header-icons a:hover {
+    transition: var(--side-default-transition);
+    filter: drop-shadow(0 5px 10px var(--side-default-color));
+    transform: scale(1.1);
+}
+
+#side-container #side-header-name-icons #side-header-icons i:active,
+#side-container #side-header-name-icons #side-header-icons a:active {
+    transition: var(--side-default-transition);
+    transform: scale(.7);
+}
+
+#side-container #side-body {
+    transition: all .05s ease-in-out;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: 63%;
+    overflow: auto;
+    padding: 20px 0;
+}
+
+#side-container #side-body::-webkit-scrollbar {
+    background: var(--side-scroll-background) !important;
+}
+
+#side-container #side-body::-webkit-scrollbar-thumb {
+    background: var(--side-scroll-color) !important;
+    border-radius: 20px;
+}
+
+#side-container #side-body .links {
+    transition: var(--side-default-transition);
+    position: relative;
+    width: 90%;
+    height: 40px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+    font-size: 13pt;
+    border-bottom: 2px solid var(--side-default-color);
+    font-weight: 900;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+#side-container #side-body .links:has(>.links-child) {
+    transition: var(--side-default-transition);
+    flex-wrap: wrap;
+}
+
+#side-container #side-body .links a {
+    transition: var(--side-default-transition);
+    color: var(--side-default-color);
+    text-decoration: none;
+}
+
+#side-container .links:hover {
+    background: var(--side-default-color);
+    /* animation: links .5s 1 linear; */
+}
+
+#side-container .links:has(>.links-child):hover {
+    animation: none !important;
+}
+
+#side-container .links:has(>.links-child):hover ~ .links {
+    z-index: -1 !important;
+}
+
+#side-container .links:hover > a,
+#side-container .links:hover span,
+#side-container .links:hover .fa {
+    transition: var(--side-default-transition);
+    color: black !important;
+}
+
+#side-container .links:has(> .links-child):hover span {
+    animation: none !important;
+}
+
+#side-container .links:hover .fa {
+    transition: var(--side-default-transition);
+    animation: links-icons 1s 1 linear;
+    animation-delay: .3s;
+}
+
+#side-container #side-body .links .fa {
+    transition: var(--side-default-transition);
+    cursor: pointer;
+    font-size: 15pt;
+    color: var(--side-default-color);
+}
+
+@keyframes links {
+    25% {
+        transform: rotate(-15deg) scale(1.1);
+    }
+    
+    50% {
+        transform: rotate(15deg);
+    }
+    
+    75% {
+        transform: rotate(-15deg);
+    }
+    
+    100% {
+        transform: rotate(15deg) scale(1.0);
+    }
+}
+
+@keyframes links-icons {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#side-container:hover #side-body .links:not(:hover) {
+    transition: all .3s ease-in-out;
+    opacity: .4;
+}
+
+#side-container .links:active {
+    transition: all .3s ease-in-out;
+    transform: scale(.9);
+}
+
+#side-container .links .links-child {
+    transition: var(--side-default-transition);
+    position: absolute;
+    top: 38px;
+    left: 0;
+    transform: translateX(-250px);
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--side-background-prefer);
+    z-index: -100;
+    opacity: 0;
+}
+
+#side-container .links:has(>.links-child).active-child .links-child {
+    transition: var(--side-default-transition);
+    transform: translateX(0) !important;
+    z-index: 20 !important;
+    opacity: 1 !important;
+}
+
+#side-container .links .links-child a {
+    transition: var(--side-default-transition);
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+    background: var(--side-default-color);
+    color: var(--side-link-background) !important;
+    padding: 2px 10px;
+}
+
+#side-container .links .links-child a:hover {
+    transition: var(--side-default-transition);
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    background: transparent !important;
+    color: var(--side-default-color) !important;
+}
+
+#side-container .links .links-child a:hover i {
+    transition: var(--side-default-transition);
+    color: var(--side-default-color) !important;
+}
+
+#side-container .links .links-child .fa {
+    transition: var(--side-default-transition);
+    color: var(--background) !important;
+}
+
+#side-footer {
+    transition: var(--side-default-transition);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 8%;
+    gap: 10px;
+    font-family: "algerian";
+    margin-top: 20px;
+}
+
+#out {
+    transition: var(--side-default-transition);
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: calc(100vw - var(--sidebar-width));
+    height: 100vh;
+    background: var(--side-scroll-background);
+    z-index: 400 !important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+
+#menu {
+    transition: var(--side-default-transition);
+    position: fixed;
+    top: var(--menu-top);
+    left: var(--menu-left);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    z-index: var(--side-default-z-index);
+}
+
+@media screen and (max-width: 800px) {
+    #menu {
+        width: 30px;
+        height: 30px;
+        gap: 5px;
+        top: 15px;
+    }
+}
+
+#menu:hover {
+    transition: var(--side-default-transition);
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 800px) {
+    #menu:hover {
+        transition: var(--side-default-transition);
+        transform: scale(1.2);
+    }
+}
+
+#menu div {
+    transition: all .3s ease-in-out;
+    background: var(--side-default-color);
+    width: 100%;
+    height: 3px;
+}
+
+#menu.active-menu div:nth-child(even) {
+    transition: all .3s ease-in-out;
+    visibility: hidden;
+    z-index: -10;
+}
+
+#menu.active-menu div:first-child {
+    transition: all .3s ease-in-out;
+    transform: rotate(150deg);
+    position: absolute;
+}
+
+#menu.active-menu div:last-child {
+    transition: all .3s ease-in-out;
+    transform: rotate(-150deg);
+    position: absolute;
+}
+
+.current_page {
+    transition: var(--side-default-transition);
+    color: aquamarine !important;
+}

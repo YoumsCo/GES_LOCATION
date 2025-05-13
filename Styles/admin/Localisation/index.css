@@ -1,0 +1,176 @@
+:root {
+    --background: black;
+    --background-rgba: rgba(0, 0, 0, 0.669);
+    --default-transition: all .4s ease-in-out;
+    --scroll-background: transparent;
+    --scroll-color: rgba(255, 255, 255, 0.443);
+    --default-color: whitesmoke;
+    --button-color: rgba(2, 2, 27, 0.957);
+    --button-opacity: 0.8;
+    --ads-buttons-background: rgba(0, 0, 0, 0.345);
+    --box-z-index: 500;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    behavior: smooth;
+    font-family: 'Times New Roman', serif;
+}
+
+*::-webkit-scrollbar {
+    background: var(--scroll-background);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--scroll-color) !important;
+    border-radius: 20px;
+}
+
+body {
+    transition: var(--default-transition);
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--default-color);
+    overflow-x: hidden;
+}
+
+#container {
+    transition: var(--default-transition);
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#container #space {
+    transition: var(--default-transition);
+    width: 100%;
+    height: 70px;
+}
+
+#container #add-button {
+    transition: var(--default-transition);
+    position: relative;
+    width: 170px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--default-color);
+    color: var(--button-color);
+    font-weight: 900;
+    opacity: .7;
+    border: 4px solid var(--default-color);
+    color: var(--button-color);
+    font-size: 12pt;
+    text-decoration: none;
+}
+
+#container #add-button:active {
+    transition: var(--default-transition);
+    transform: scale(0.7);
+}
+
+#container #add-button:hover {
+    transition: var(--default-transition);
+    cursor: pointer;
+    background: 0 0;
+    color: var(--default-color);
+    box-shadow: 0 3px 10px var(--default-color);
+}
+#container #add-button::before {
+    transition: var(--default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--background);
+}
+
+#container #add-button:hover::before {
+    transition: var(--default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #add-button::after {
+    transition: var(--default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--background);
+}
+
+#container #add-button:hover::after {
+    transition: var(--default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #add-button:hover::after {
+    transition: var(--default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container table {
+    transition: var(--default-transition);
+    width: 100%;
+    min-height: 100%;
+}
+
+#container table th {
+    transition: var(--default-transition);
+    border-bottom: 3px solid var(--default-color);
+    text-align: center;
+    font-size: 13pt;
+}
+
+#container table td {
+    transition: var(--default-transition);
+    text-align: center;
+    font-size: 13pt;
+}
+
+#container table td .fa {
+    transition: var(--default-transition);
+    cursor: pointer;
+    font-size: 18pt;
+    text-decoration: none;
+}
+
+#container table td .fa:hover {
+    transition: var(--default-transition);
+    transform: scale(1.15);
+}
+
+#container table td .fa:active {
+    transition: var(--default-transition);
+    transform: scale(.8);
+}
+
+#container table td .fa-edit {
+    transition: var(--default-transition);
+    color: green;
+}
+
+#container table td .fa-trash-o {
+    transition: var(--default-transition);
+    color: red;
+}

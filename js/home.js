@@ -1,4 +1,19 @@
-import { cookieParent, createCookie, createHTMLElement, handleAllowCookie } from "./tools.js";
+import { checkAllowCoookies, checkAuthentication, cookieParent, createCookie, createHTMLElement, handleAllowCookie } from "./tools.js";
+
+const scrollTopButton = document.querySelector("#scroll-top-button");
+const scrollLastPositionButton = document.querySelector("#scroll-last-position-button");
+
+const filterButtons = document.querySelectorAll(".filter-buttons");
+let filterTab = [];
+
+const houses = document.querySelectorAll(".habitat");
+
+const scrollAdLeft = document.querySelectorAll(".scroll-buttons-left");
+const scrollAdRight = document.querySelectorAll(".scroll-buttons-right");
+
+const images = document.querySelectorAll(".img");
+
+const desc = document.querySelectorAll(".description");
 
 window.addEventListener("scroll", function () {
     if (window.scrollY >= 50) {
@@ -18,14 +33,12 @@ window.addEventListener("load", function () {
     }
 });
 
-const scrollTopButton = document.querySelector("#scroll-top-button");
-const scrollLastPositionButton = document.querySelector("#scroll-last-position-button");
 
 window.addEventListener("scroll", function () {
     window.scrollY >= 600 ? scrollTopButton.classList.add("show-button") : scrollTopButton.classList.remove("show-button");
 });
 
-document.querySelector("#scroll-top-button").addEventListener("click", function () {
+scrollTopButton.addEventListener("click", function () {
     scrollLastPositionButton.classList.add("show-button");
     localStorage.setItem("position", window.scrollY);
     window.scrollTo({
@@ -46,8 +59,6 @@ scrollLastPositionButton.addEventListener("click", function () {
     }, 3000);
 });
 
-const filterButtons = document.querySelectorAll(".filter-buttons");
-let filterTab = [];
 
 filterButtons.forEach(button => {
     button.addEventListener("click", function () {
@@ -64,7 +75,6 @@ filterButtons.forEach(button => {
     });
 });
 
-const houses = document.querySelectorAll(".habitat");
 
 const hideHouse = () => {
     houses.forEach(house => {
@@ -88,6 +98,12 @@ export const toggleAds = (toggle) => {
 
 export const showCategory = (one = null, exports = false) => {
     const aprts = document.querySelectorAll(".habitat");
+    const buttons = document.querySelectorAll(".filter-buttons");
+
+    if(localStorage.getItem("ads-hidden")) {
+        toggleAds(true);
+    }
+
     if (one == null) {
         aprts.forEach(house => {
             house.classList.contains("no-choised") ? house.classList.remove("no-choised") : undefined;
@@ -95,9 +111,13 @@ export const showCategory = (one = null, exports = false) => {
     }
     else {
         hideHouse();
-        aprts.forEach((house, houseIndex) => {
-            if (houseIndex == one - 1) {
+        aprts.forEach((house) => {
+            if (house.classList.contains(buttons[one].textContent)) {
                 house.classList.remove("no-choised");
+
+            }
+            else {
+                house.classList.add("no-choised");
             }
         });
     }
@@ -105,8 +125,8 @@ export const showCategory = (one = null, exports = false) => {
         if (localStorage.getItem("filter-value")) {
             filterButtons.forEach((button, index) => {
                 if (button.textContent === localStorage.getItem("filter-value")) {
-                    aprts.forEach((house, houseIndex) => {
-                        if (houseIndex == index - 1) {
+                    aprts.forEach((house) => {
+                        if (house.classList.contains(buttons[index].textContent)) {
                             house.classList.remove("no-choised");
                         }
                         else {
@@ -126,7 +146,12 @@ export const showCategory = (one = null, exports = false) => {
         }
     }
     if (localStorage.getItem("position")) {
-        undefined;
+        setTimeout(function () {
+            window.scrollTo({
+                top: localStorage.getItem("position"),
+                behavior: "smooth"
+            });
+        }, 1000);
     }
     else {
         window.scrollTo({
@@ -157,24 +182,17 @@ const removeClass = () => {
 filterButtons.forEach((button, index) => {
     button.addEventListener("click", function () {
         if (index === 0) {
-            toggleAds(false);
-        }
-        if (document.querySelector("#result")) {
-            document.querySelector("#content").removeChild(document.querySelector("#result"));
-        }
-        if (index == 0) {
             showCategory();
-            localStorage.getItem("position") && window.scrollTo({
-                top: localStorage.getItem("position"),
-                behavior: "smooth"
-            });
+            toggleAds(false);
+            localStorage.removeItem("ads-hidden");
         }
         else {
             showCategory(index);
-            localStorage.getItem("position") && window.scrollTo({
-                top: localStorage.getItem("position"),
-                behavior: "smooth"
-            });
+            localStorage.setItem("ads-hidden", true);
+            toggleAds(true);
+        }
+        if (document.querySelector("#result")) {
+            document.querySelector("#content").removeChild(document.querySelector("#result"));
         }
     });
     setTimeout(function () {
@@ -225,8 +243,6 @@ const scrollInterval = () => {
 
 scrollInterval();
 
-const scrollAdLeft = document.querySelectorAll(".scroll-buttons-left");
-const scrollAdRight = document.querySelectorAll(".scroll-buttons-right");
 
 scrollAdLeft.forEach(item => {
     item.addEventListener("click", function () {
@@ -265,6 +281,7 @@ window.addEventListener("load", function () {
         showCategory();
     }
     else {
+        toggleAds(false);
         if (localStorage.getItem("filter-value") === filterButtons[0].textContent) {
             showCategory();
         }
@@ -286,7 +303,6 @@ window.addEventListener("load", function () {
 
 });
 
-const images = document.querySelectorAll(".img");
 for (let i = 0; i < images.length; i++) {
     images[i].addEventListener("load", function () {
         const loader = images[i].nextElementSibling;
@@ -304,7 +320,6 @@ export default function spaceProfilePicture(url = null) {
 
 spaceProfilePicture("index");
 
-const desc = document.querySelectorAll(".description");
 
 desc.forEach((child) => {
     const descText = child.querySelector(".text");
@@ -353,10 +368,42 @@ window.addEventListener("resize", function () {
 });
 
 window.addEventListener("load", function () {
-    if (handleAllowCookie() !== false) {
-        alert(handleAllowCookie());
+    checkAllowCoookies()
+    checkAuthentication();
+});
+
+window.addEventListener("wheel", function (e) {
+    if (e.ctrlKey) {
+        e.preventDefault();
     }
-    else if (!handleAllowCookie() && !localStorage.getItem(cookieParent.name)) {
-        createCookie();
+
+}, { passive: false });
+
+const showRegisterForm = document.querySelectorAll(".space-buttons")[1];
+
+showRegisterForm.addEventListener("click", function () {
+    sessionStorage.setItem("register", "true");
+});
+
+
+const authenticationButtons = document.querySelectorAll(".space-buttons");
+
+authenticationButtons.forEach(button => {
+    button.addEventListener("click", function () {
+        sessionStorage.setItem("referer", location.href);
+    });
+}); 
+
+window.addEventListener("load", function() {
+    if (sessionStorage.getItem("notification")) {
+        const str = sessionStorage.getItem("notification").split(".");
+        let string = "";
+        str.forEach(element => {
+            string += `${element}.\n`;
+        });
+        createHTMLElement("notification", string);
+        setTimeout(function() {
+            sessionStorage.removeItem("notification");
+        }, 5000);
     }
 });

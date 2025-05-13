@@ -1,0 +1,813 @@
+:root {
+    --show-one-background: black;
+    --show-one-background-rgba: rgba(0, 0, 0, 0.669);
+    --show-one-default-transition: all .4s ease-in-out;
+    --show-one-scroll-background: transparent;
+    --show-one-scroll-color: rgba(255, 255, 255, 0.443);
+    --show-one-default-color: whitesmoke;
+    --show-one-button-color: rgba(2, 2, 27, 0.957);
+    --show-one-button-opacity: 0.8;
+    --ads-buttons-background: rgba(0, 0, 0, 0.345);
+    --show-one-box-z-index: 20;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*::-webkit-scrollbar {
+    background: var(--show-one-scroll-background);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--show-one-scroll-color) !important;
+    border-radius: 20px;
+}
+
+body {
+    transition: var(--show-one-default-transition);
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    background: var(--show-one-background);
+    color: var(--show-one-default-color);
+    overflow-x: hidden;
+}
+
+#container {
+    transition: var(--show-one-default-transition);
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#container #space {
+    transition: var(--show-one-default-transition);
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+#container #space .space-buttons {
+    transition: var(--show-one-default-transition);
+    position: relative;
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--show-one-default-color);
+    color: var(--show-one-button-color);
+    font-weight: 900;
+    opacity: var(--show-one-button-opacity);
+    border: 4px solid var(--show-one-default-color);
+}
+
+@media screen and (max-width: 500px) {
+    #container #space .space-buttons {
+        transition: var(--show-one-default-transition);
+        width: 100px;
+        height: 35px;
+        font-size: 12pt;
+    }
+}
+
+#container #space .space-buttons:active {
+    transition: var(--show-one-default-transition);
+    transform: scale(0.7);
+}
+
+#container #space .space-buttons:hover {
+    transition: var(--show-one-default-transition);
+    cursor: pointer;
+    background: 0 0;
+    box-shadow: 0 3px 10px var(--show-one-default-color);
+}
+
+#container #space .space-buttons a {
+    transition: var(--show-one-default-transition);
+    color: var(--show-one-button-color);
+    font-size: 11pt;
+    text-decoration: none;
+}
+
+#container #space .space-buttons:hover a {
+    transition: var(--show-one-default-transition);
+    color: var(--show-one-default-color);
+}
+
+#container #space .space-buttons::before {
+    transition: var(--show-one-default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--show-one-background);
+}
+
+#container #space .space-buttons:hover::before {
+    transition: var(--show-one-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #space .space-buttons::after {
+    transition: var(--show-one-default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--show-one-background);
+}
+
+#container #space .space-buttons:hover::after {
+    transition: var(--show-one-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #space .space-buttons:hover::after {
+    transition: var(--show-one-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #space #space-profile {
+    transition: var(--show-one-default-transition);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#container #space #space-name {
+    transition: var(--show-one-default-transition);
+    width: 150px;
+    transform: translateY(2px);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-wrap: nowrap;
+    letter-spacing: 4px;
+}
+
+@media screen and (max-width: 700px) {
+    #container #space #space-name {
+        display: none;
+    }
+}
+
+#container #space #theme-icon {
+    transition: var(--show-one-default-transition);
+    font-size: 20pt;
+    color: var(--show-one-default-color);
+    transform: translateY(2px);
+    filter: drop-shadow(0 5px 5px var(--show-one-default-color));
+    margin-right: 10px;
+}
+
+#container #space #theme-icon:hover {
+    transition: var(--show-one-default-transition);
+    transform: translateY(2px) scale(1.1);
+}
+
+#container #space #theme-icon:active {
+    transition: var(--show-one-default-transition);
+    transform: translateY(2px) scale(.7);
+}
+
+@media screen and (max-width: 500px) {
+    #container #space #theme-icon {
+        display: none;
+    }
+}
+
+#container #contain-one {
+    transition: var(--show-one-default-transition);
+    position: relative;
+    width: 90%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+@media screen and (max-width: 700px) {
+    #container #contain-one {
+        transition: var(--show-one-default-transition);
+        width: 90%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+#container #contain-one #contain-img {
+    transition: var(--show-one-default-transition);
+    width: 50%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 700px) {
+    #container #contain-one #contain-img {
+        transition: var(--show-one-default-transition);
+        width: 100%;
+        height: 100%;
+    }
+}
+
+#container #contain-one #contain-img .img {
+    transition: var(--show-one-default-transition);
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    object-position: center;
+}
+
+@media screen and (max-width: 700px) {
+    #container #contain-one #contain-img .img {
+        transition: var(--show-one-default-transition);
+        width: 100%;
+    }
+}
+
+#container #contain-one #contain-information {
+    transition: var(--show-one-default-transition);
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 700px) {
+    #container #contain-one #contain-information {
+        transition: var(--show-one-default-transition);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+#container #contain-one #contain-information #contain-text {
+    transition: var(--show-one-default-transition);
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media screen and (max-width: 700px) {
+    #container #contain-one #contain-information #contain-text {
+        transition: var(--show-one-default-transition);
+        opacity: .4;
+    }
+    
+    #container #contain-one #contain-information #contain-text:hover {
+        transition: var(--show-one-default-transition);
+        opacity: 1;
+        background: var(--show-one-background-rgba);
+    }
+}
+
+#container #contain-one #contain-information #contain-text p {
+    transition: var(--show-one-default-transition);
+    width: 100%;
+    height: 80%;
+    padding: 20px;
+    text-align: justify;
+    overflow: auto;
+}
+
+#container #contain-one #contain-information #contain-text #contain-location,
+#container #contain-one #contain-information #contain-text #contain-montant {
+    transition: var(--show-one-default-transition);
+    width: 100%;
+    height: 10%;
+    padding: 10px 20px;
+    text-align: left;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    overflow: hidden;
+}
+
+#container #contain-one #contain-information #contain-text strong {
+    color: aquamarine;
+}
+#container #contain-one #contain-information #contain-text .fa {
+    font-size: 16pt !important;
+}
+
+#container #contain-one #contain-information #contain-button {
+    transition: var(--show-one-default-transition);
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#container #contain-one #contain-information .fa {
+    transition: var(--show-one-default-transition);
+    font-size: 25pt;
+    color: var(--show-one-default-color);
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 1;
+}
+
+#container #contain-one #contain-information .fa:hover {
+    transition: var(--show-one-default-transition);
+    transform: scale(1.2);
+}
+
+#container #contain-one #contain-information .fa:active {
+    transition: var(--show-one-default-transition);
+    transform: scale(.8);
+}
+
+#container #contain-one #contain-information #contain-button #buy-button {
+    transition: var(--show-one-default-transition);
+    position: relative;
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--show-one-default-color);
+    color: var(--show-one-button-color);
+    font-weight: 900;
+    opacity: var(--show-one-button-opacity);
+    border: 4px solid var(--show-one-default-color);
+    z-index: 1;
+}
+
+@media screen and (max-width: 600px) {
+    #container #contain-one #contain-information #contain-button #buy-button {
+        transition: var(--show-one-default-transition);
+        width: 100px;
+    }
+}
+
+#container #contain-one #contain-information #contain-button #buy-button:active {
+    transition: var(--show-one-default-transition);
+    transform: scale(0.7);
+}
+
+#container #contain-one #contain-information #contain-button #buy-button:hover {
+    transition: var(--show-one-default-transition);
+    cursor: pointer;
+    background: 0 0;
+    box-shadow: 0 3px 10px var(--show-one-default-color);
+}
+
+#container #contain-one #contain-information #contain-button #buy-button,
+#container #contain-one #contain-information #contain-button #buy-button a {
+    transition: var(--show-one-default-transition);
+    color: var(--show-one-button-color);
+    font-size: 11pt;
+    text-decoration: none;
+}
+
+#container #contain-one #contain-information #contain-button #buy-button:hover,
+#container #contain-one #contain-information #contain-button #buy-button:hover a {
+    transition: var(--show-one-default-transition);
+    color: var(--show-one-default-color);
+}
+
+#container #contain-one #contain-information #contain-button #buy-button::before {
+    transition: var(--show-one-default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--show-one-background);
+}
+
+#container #contain-one #contain-information #contain-button #buy-button:hover::before {
+    transition: var(--show-one-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #contain-one #contain-information #contain-button #buy-button::after {
+    transition: var(--show-one-default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--show-one-background);
+}
+
+#container #contain-one #contain-information #contain-button #buy-button:hover::after {
+    transition: var(--show-one-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #contain-one #contain-information #contain-button #buy-button:hover::after {
+    transition: var(--show-one-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #contain-one #contain-scroll-buttons {
+    transition: var(--show-one-default-transition);
+    position: absolute;
+    left: 0;
+    bottom: 23px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+@media screen and (min-width: 700px) {
+    #container #contain-one #contain-scroll-buttons {
+        transition: var(--show-one-default-transition);
+        bottom: 50%;
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #container #contain-one #contain-scroll-buttons {
+        transition: var(--show-one-default-transition);
+        padding: 0 0px;
+    }
+}
+
+#container #contain-one #contain-scroll-buttons .fa {
+    transition: var(--show-one-default-transition);
+    font-size: 25pt;
+    color: var(--show-one-default-color);
+    cursor: pointer;
+    opacity: .4;
+}
+
+#container #contain-one #contain-scroll-buttons .fa:hover {
+    transition: var(--show-one-default-transition);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+#container #contain-one #contain-scroll-buttons .fa:active {
+    transition: var(--show-one-default-transition);
+    opacity: 1;
+    transform: scale(.7);
+}
+
+#contain-all {
+    transition: var(--show-one-default-transition);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--show-one-background-rgba);
+    opacity: 1;
+    z-index: 2;
+}
+
+.contain-hide {
+    transition: var(--show-one-default-transition);
+    opacity: 0 !important;
+    z-index: -10 !important;
+}
+
+#contain-reserve-elements {
+    transition: var(--show-one-default-transition);
+    width: 70%;
+    height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--show-one-default-color);
+    padding: 5px;
+    box-shadow: 0 3px 10px var(--show-one-default-color);
+}
+
+#contain-all:not(.contain-hide) #contain-reserve-elements {
+    animation: form-appear .5s 1 linear;
+    animation-delay: .2s;
+}
+
+@keyframes form-appear {
+    0% {
+        transform: scale(1.2);
+    }   
+    
+    50% {
+        transform: scale(.9);
+    }   
+    
+    100% {
+        transform: scale(1.0);
+    }   
+}
+
+@media screen and (max-width: 910px) {
+    #contain-reserve-elements {
+        transition: var(--show-one-default-transition);
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #contain-reserve-elements {
+        transition: var(--show-one-default-transition);
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #contain-reserve-elements {
+        transition: var(--show-one-default-transition);
+        width: 90%;
+    }
+}
+
+#contain-reserve-elements #contain-house-image {
+    transition: var(--show-one-default-transition);
+    width: 50%;
+    height: 100%;
+}
+
+@media screen and (max-width: 910px) {
+    #contain-reserve-elements #contain-house-image {
+        display: none;
+    }
+}
+
+#contain-reserve-elements #contain-house-image img {
+    transition: var(--show-one-default-transition);
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    object-position: center;
+}
+
+#contain-reserve-elements #contain-form {
+    transition: var(--show-one-default-transition);
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 910px) {
+    #contain-reserve-elements #contain-form {
+        transition: var(--show-one-default-transition);
+        width: 100%;
+    }
+}
+
+#contain-reserve-elements #contain-form form {
+    transition: var(--show-one-default-transition);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background: var(--show-one-background-rgba);
+    gap: 20px;
+}
+
+#contain-reserve-elements #contain-form form div {
+    transition: var(--show-one-default-transition);
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#contain-reserve-elements #contain-form form div marquee {
+    transition: var(--show-one-default-transition);
+    width: 50%;
+    margin: 0 0 20px 0;
+}
+
+#contain-reserve-elements #contain-form form div H2 {
+    transition: var(--show-one-default-transition);
+    width: 100%;
+    font-size: 20pt;
+    background: url("../Img/2HaB.gif");
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+#contain-reserve-elements #contain-form form div label {
+    transition: var(--show-one-default-transition);
+    position: absolute;
+    font-size: 13pt;
+    top: 0;
+    left: 0;
+    transform: translate(18px, 5px);
+}
+
+#contain-reserve-elements #contain-form form input:focus + label,
+#contain-reserve-elements #contain-form form input:not(:placeholder-shown) + label {
+    transition: var(--show-one-default-transition);
+    transform: translate(-2px, -14px);
+    font-size: 9pt;
+}
+
+#contain-reserve-elements #contain-form form input {
+    transition: var(--show-one-default-transition);
+    width: 100%;
+    height: 30px;
+    padding: 0 35px 0 20px;
+    font-size: 13pt;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid var(--show-one-default-color);
+    z-index: 1;
+    color: var(--show-one-default-color);
+}
+
+#container input {
+    transition: var(--show-one-default-transition);
+    width: 20%;
+    height: 30px;
+    padding: 0 35px 0 20px;
+    font-size: 13pt;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid var(--show-one-default-color);
+    z-index: 1;
+    color: var(--show-one-default-color);
+}
+
+#contain-reserve-elements #contain-form form input[type="date"] {
+    transition: var(--show-one-default-transition);
+    width: 50% !important;
+}
+
+#contain-reserve-elements #contain-form form div input::placeholder {
+    transition: all .2s ease-in-out;
+    color: var(--show-one-default-color);
+    font-size: 11pt;
+    visibility: hidden;
+}
+
+#contain-reserve-elements #contain-form form [type="text"].none {
+    transition: var(--show-one-default-transition);
+    pointer-events: none;
+}
+
+#contain-reserve-elements #contain-form form div input:focus {
+    transition: outline .4s ease-in-out,
+    box-shadow .2s ease-in-out,
+                border .1s ease-in-out;
+    outline: none;
+    box-shadow: 0 3px 10px var(--show-one-default-color);
+    border: 3px solid var(--show-one-default-color);
+}
+
+#contain-reserve-elements #contain-form form div input:focus::placeholder {
+    transition: var(--show-one-default-transition);
+    visibility: visible;
+}
+
+#contain-reserve-elements #contain-form form div:last-child {
+    transition: var(--show-one-default-transition);
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#contain-reserve-elements #contain-form form div button {
+    transition: var(--show-one-default-transition);
+    position: relative;
+    width: 130px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--show-one-default-color);
+    font-weight: 900;
+    color: var(--show-one-button-color);
+    opacity: var(--show-one-button-opacity);
+    border: 4px solid var(--show-one-default-color);
+    font-size: 13pt;
+}
+
+@media screen and (max-width: 650px) {
+    #contain-reserve-elements #contain-form form div button {
+        transition: var(--show-one-default-transition);
+        position: relative;
+        width: 100px;
+    }
+}
+
+#contain-reserve-elements #contain-form form div button:active {
+    transition: var(--show-one-default-transition);
+    transform: scale(0.7);
+}
+
+#contain-reserve-elements #contain-form form div button:hover {
+    transition: var(--show-one-default-transition);
+    cursor: pointer;
+    background: transparent;
+    box-shadow: 0 3px 10px var(--show-one-default-color);
+    color: var(--show-one-default-color) !important;
+}
+
+#contain-reserve-elements #contain-form form div button::before {
+    transition: var(--show-one-default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--show-one-background);
+}
+
+#contain-reserve-elements #contain-form form div button:hover::before {
+    transition: var(--show-one-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#contain-reserve-elements #contain-form form div button::after {
+    transition: var(--show-one-default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--show-one-background);
+}
+
+#contain-reserve-elements #contain-form form div button:hover::after {
+    transition: var(--show-one-default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#contain-reserve-elements #contain-form form div .fa {
+    transition: var(--show-one-default-transition);
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 15pt;
+    transform: translate(-10px, 5px);
+    color: var(--show-one-default-color);
+}
+
+#contain-reserve-elements #contain-form form div.date .fa {
+    transition: var(--show-one-default-transition);
+    transform: translate(-10px, 3px) !important;
+}

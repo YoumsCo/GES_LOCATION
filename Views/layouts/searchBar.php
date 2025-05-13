@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../Styles/dark/layouts/searchBar.css">
+<link rel="stylesheet" href="../../Styles/layouts/searchBar.css">
 <link rel="stylesheet" href="../../font-awesome-4.7.0/css/font-awesome.min.css">
 
 <div id="searchBar-container">

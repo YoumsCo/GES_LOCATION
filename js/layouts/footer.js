@@ -2,4 +2,8 @@ import { onLinkClick } from "./side.js";
 
 const footerLinks = document.querySelector("#footer-links").querySelectorAll(".links");
 
-onLinkClick(footerLinks);
+footerLinks.forEach(link => {
+    link.addEventListener("click", function(e) {
+        onLinkClick(link, e);
+    });
+});

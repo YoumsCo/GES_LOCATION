@@ -1,0 +1,18 @@
+{
+    "name": "youms/models",
+    "autoload": {
+        "psr-4": {
+            "Models\\": "Models/",
+            "Models\\User\\": "Models/User",
+            "Models\\Admin\\": "Models/Admin",
+            "Models\\Proprio\\": "Models/Proprio",
+            "Controllers\\User\\": "Controllers/User",
+            "Controllers\\Admin\\": "Controllers/Admin",
+            "Controllers\\Proprio\\": "Controllers/Proprio"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.9",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

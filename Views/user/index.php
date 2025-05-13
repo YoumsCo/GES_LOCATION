@@ -1,3 +1,32 @@
+<?php
+
+use Controllers\Proprio\Controller;
+use Models\Admin\BienImmobilier;
+use Models\Admin\Laisser;
+use Models\Admin\Type;
+use Models\Admin\User;
+use Models\User\Avis;
+
+require_once "../../vendor/autoload.php";
+
+$reviews = new Avis();
+$leaves = new Laisser();
+$users = new User();
+$bienImmobilier = new BienImmobilier();
+$types = new Type();
+$filesDatas = new Controller();
+
+$gets = $reviews->get_reviews();
+$all_users = $users->getUsers();
+$joins = $leaves->read();
+$allBienImmobilier = $bienImmobilier->get_bien_immobilier();
+$allType = $types->get_types();
+
+$rep = "../../houses/";
+$files = $filesDatas->images($rep);
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -6,8 +35,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Youms C">
     <meta name="description" content="Site de prestation de logements">
-    <link rel="stylesheet" href="../../Styles/dark/home.css">
-    <link rel="stylesheet" href="../../Styles/dark/tools.css">
+    <link rel="stylesheet" href="../../Styles/home.css">
+    <link rel="stylesheet" href="../../Styles/tools.css">
     <link rel="stylesheet" href="../../font-awesome-4.7.0/css/font-awesome.min.css">
     <title>GES-LOCATION | Accueil</title>
 </head>
@@ -21,150 +50,198 @@
 
     <div id="container">
         <div id="space">
-            <button type="button" class="space-buttons"><a href="#">Connexion</a></button>
-            <button type="button" class="space-buttons"><a href="#">Nous rejoindre</a></button>
+            <button type="button" class="space-buttons"><a href="./connexion.php">Connexion</a></button>
+            <button type="button" class="space-buttons"><a href="./connexion.php">Nous rejoindre</a></button>
             <img src="../../Img/use.png" alt="Photo de profile" id="space-profile">
-            <i class="fa fa-moon-o" aria-hidden="true" id="theme-icon"></i>
         </div>
         <div id="header">
             <?php
             include_once '../layouts/searchBar.php';
             ?>
             <div id="picture">
-                <img src="../../Img/use.png" alt="profile picture">
+                <?php
+                if (!empty($pictures)) {
+                    foreach ($pictures as $file):
+                        ?>
+                        <img src="<?= (string) $picture_rep . $file ?>" alt="<?= $name ?>">
+                        <?php
+                    endforeach;
+                } else {
+                    ?>
+                    <img src="../../Img/use.png" alt="<?= $name ?>">
+                    <?php
+                }
+                ?>
             </div>
         </div>
 
         <div id="filter">
             <i class="fa fa-filter">Filtre : </i>
             <button type="button" class="filter-buttons active-choise">Tout</button>
-            <button type="button" class="filter-buttons">Appartments</button>
-            <button type="button" class="filter-buttons">Maison</button>
-            <button type="button" class="filter-buttons">Studios</button>
-            <button type="button" class="filter-buttons">Chambres</button>
+            <?php foreach ($allType as $type): ?>
+                <button type="button" class="filter-buttons"><?= $type["intitule"] ?></button>
+            <?php endforeach; ?>
         </div>
 
+        <hr>
         <div id="content">
-            <div class="habitat apartment">
-                <div class="images">
-                    <img src="../../Img/pexels-ivan-siarbolin-3695799.jpg" alt="Image" class="img">
-                    <div class="image-loader"></div>
-                </div>
-                <div class="description">
-                    <p class="text">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur eligendi neque quas quo ad natus, maiores quam debitis adipisci earum at sequi quibusdam accusantium ducimus soluta ut pariatur dolorem exercitationem a commodi est recusandae. Corrupti reiciendis similique veritatis odio at autem, sed laborum! Perferendis totam porro fugit! Quae quisquam, inventore animi nemo quas quia error neque architecto beatae cum nesciunt! Voluptatem ab dicta alias suscipit minima nulla, repellat error adipisci qui, expedita veniam possimus ex non dolore nobis a. Asperiores officia harum facilis error illo, ut voluptatum ab iste vero sed, facere praesentium eum fugiat suscipit, blanditiis odio ullam magnam aliquam laboriosam delectus ducimus ipsam! Dolore quod voluptate illum quisquam sed maxime quidem, in fuga, ipsam, deleniti est deserunt temporibus saepe ullam quibusdam totam tempora ducimus laudantium! Quos debitis eum animi quae est, nostrum tempora, dolorem earum ratione cum exercitationem doloribus, et deserunt molestias facilis quis omnis qui rerum eligendi. Perferendis, adipisci quisquam quam dolorum possimus labore atque nesciunt quis est? Quia, odit nobis temporibus in nemo consequatur assumenda id non inventore aliquid magnam porro sequi corrupti voluptatum at doloribus blanditiis esse modi explicabo! Omnis magni odit et ad mollitia, hic iusto optio architecto fugiat ea quisquam dicta consequatur soluta est unde magnam minima non. Adipisci quod eum fugit, quidem neque rem delectus maiores sunt sed harum enim nihil tempore totam, odio dolores iure eos voluptate illo veritatis quas amet quam nobis. Dignissimos aut provident corporis iusto? Ut officia obcaecati quo optio veniam expedita distinctio minus ipsa? Eius doloribus amet iure blanditiis odio. Impedit aliquid cum labore? Iusto quo officia est voluptatum, veritatis quod, enim accusantium vero magnam dicta sit expedita suscipit, quis iste alias doloremque eos libero maxime laboriosam! Fugiat accusantium libero earum ut rem excepturi fugit magni quos quae, mollitia recusandae dolorum voluptates omnis culpa repellat laborum est incidunt dolore dolor maiores at. Eos reiciendis quaerat aut itaque saepe iusto corporis iure voluptatum libero, animi commodi doloribus. Praesentium, autem sint nam porro debitis ut similique nostrum odit quia omnis. Omnis nam veniam nobis ad cumque ipsam odio sapiente non officia! Molestias mollitia, odio voluptates sint beatae perferendis deleniti dolor quidem distinctio cumque? Nesciunt minus voluptatem, ducimus reiciendis officia tempora similique. Laborum ut odio rem quibusdam, mollitia voluptates saepe sequi? Natus, provident consequuntur! Inventore voluptatum fugiat ipsa minus recusandae, veritatis cumque, libero corrupti ab asperiores voluptatem illo dolores culpa eligendi quam? Adipisci dignissimos deserunt, quos labore atque inventore magni numquam consequatur error, est maiores veritatis nostrum natus accusantium quisquam dolorum similique placeat sapiente. Cum nesciunt quod magni, odit quos cupiditate nostrum harum expedita vitae animi blanditiis accusamus ipsum illo ullam impedit qui iusto, delectus obcaecati sed deleniti? Voluptate nobis similique expedita eius perferendis ex architecto eum error quis! Cupiditate soluta nostrum eum possimus. Molestias veritatis et temporibus officia eum. Ipsum quisquam recusandae provident! Commodi hic expedita, aspernatur alias modi, obcaecati cupiditate dolore magni necessitatibus asperiores et debitis nesciunt labore pariatur provident! Est, odio? Facilis dignissimos modi, aliquam quos repudiandae nemo, explicabo, a ex sed quam magni numquam tempora. Magni vitae dolorem dignissimos voluptas alias exercitationem in, odit, sit placeat commodi nulla atque ipsum labore ipsa incidunt. Quaerat in alias rem amet error earum rerum omnis qui repudiandae quia vitae delectus, natus dignissimos, soluta fuga beatae. Incidunt voluptas magnam dicta maxime! Veritatis nemo repellat eos illum dicta enim reiciendis quae voluptatum quas, explicabo autem molestias sit obcaecati iure error ut. Praesentium blanditiis repellendus fugit provident doloribus cupiditate temporibus eius, officia, autem, qui obcaecati cum maiores molestias dignissimos? Rem officia inventore, blanditiis dolorum nulla odio. Reprehenderit quasi ut amet minus harum vitae velit magni, possimus deleniti fugit fugiat sunt iste animi vero tenetur reiciendis! Est libero exercitationem ipsa repellat vel, soluta assumenda accusantium reprehenderit deleniti at molestias quis incidunt necessitatibus voluptas inventore eum, sapiente nisi facere! Sint sequi laborum sit ullam qui, nobis unde aliquam ea quae earum nisi, accusamus placeat id iusto natus quisquam quidem accusantium! Illo atque possimus quos, eum explicabo eos? Voluptatibus quia temporibus pariatur dignissimos fuga modi expedita porro. Ducimus ab animi saepe deserunt. Maiores sit molestias ut neque quae nostrum officiis aspernatur in, cumque recusandae necessitatibus quasi dolorem velit odio tempora ea, quo quidem sunt dignissimos modi? Animi ad provident quibusdam dolores harum voluptates autem repellat nobis cumque maxime, quam blanditiis, molestias obcaecati cum soluta! Placeat beatae sapiente porro odio ducimus voluptates asperiores, officiis vel totam eligendi. Cum perferendis quas modi inventore similique corporis dolorum fuga sint incidunt illo officia et porro deserunt, placeat quod, ut, doloribus eius ad omnis tenetur? Doloremque error, ex maiores labore architecto voluptates, eveniet minima, deleniti accusamus aperiam sunt reprehenderit! Eum fugiat ad ipsa tempore repellat. Possimus eaque, exercitationem odit reiciendis aliquam, excepturi consequatur cupiditate, officia quo doloremque odio eius sit culpa. Assumenda quidem ea tempore beatae placeat! Recusandae maiores nam, tempore dolorum voluptatem ut dolore! Non, consequuntur ea cum eaque amet, nemo perferendis impedit provident laborum saepe est odio numquam officiis? Numquam suscipit quam incidunt aliquam rerum architecto autem, dolorem, mollitia magnam laboriosam nihil porro. Porro unde velit, quae saepe repellendus nesciunt maiores ea reprehenderit excepturi enim recusandae nam minus reiciendis animi dicta iste aut a placeat soluta minima eaque tempora. Dolorem deleniti neque, tempore at, nesciunt amet pariatur, velit animi quae quas et doloribus possimus maxime voluptatum. Perferendis nobis quaerat illum totam eum mollitia laboriosam, saepe explicabo nulla eveniet ipsa iusto cupiditate quis unde? Repudiandae voluptas id ipsum nisi sit quisquam repellat, placeat aliquid optio, fuga consequatur ipsa non nulla voluptates sint. Esse, natus? Cumque fugiat suscipit vero pariatur, officiis ipsam, harum repellat eveniet libero tempora nemo perferendis quo natus ab reiciendis asperiores quis nulla doloribus! Ducimus, recusandae. Et, enim placeat laboriosam culpa non modi optio odio similique cupiditate consectetur possimus deleniti hic, quidem dolorum expedita reprehenderit. Rem modi voluptas dolore officia consectetur praesentium obcaecati dicta, unde dolorem, nam, facere nostrum provident ut suscipit molestiae repellendus facilis sit minima officiis sequi earum! Accusantium maxime ex quasi tenetur illum corrupti, assumenda nulla aspernatur optio maiores aliquam magni ut, impedit sed deleniti animi neque accusamus iure fuga eius atque repellendus ea.
-                    </p>
-                    <div class="button">
-                        <button>
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                            &nbsp;
-                            <a href="./show_one.php">Voir plus</a>
-                        </button>
+
+            <?php
+            $i = 0;
+            foreach ($allBienImmobilier as $bien):
+                if ($i % 2 === 0) {
+                    foreach ($allType as $type):
+                        if ($bien["id_type"] === $type["id_type"]):
+                            ?>
+                            <div class="habitat <?= $type["intitule"] ?>">
+                                <div class="images">
+                                    <?php
+                                    foreach ($files as $file):
+                                        [$file_email, $file_time, $file_other] = explode("_", $file);
+                                        [$file_id, $file_ext] = explode(".", $file_other);
+                                        if ($file_id == $bien["id_bien"]):
+                                            ?>
+
+                                            <img src="<?= (string) $rep . $file ?>" alt="Image" class="img">
+
+                                            <?php
+                                            break;
+                                        endif;
+                                    endforeach;
+                                    ?>
+                                    <div class="image-loader"></div>
+                                </div>
+                                <div class="description">
+                                    <p class="text">
+                                        <?= $bien["description"] ?>
+                                    </p>
+                                    <div class="button">
+                                        <button>
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                            &nbsp;
+                                            <a href="./show_one.php?token=<?= base64_encode($bien["id_bien"]) ?>">Voir plus</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        endif;
+                    endforeach;
+                } else {
+                    foreach ($allType as $type):
+                        if ($bien["id_type"] === $type["id_type"]):
+                            ?>
+                            <div class="habitat <?= $type["intitule"] ?>">
+                                <div class="images">
+                                    <?php
+                                    foreach ($files as $file):
+                                        [$file_email, $file_time, $file_other] = explode("_", $file);
+                                        [$file_id, $file_ext] = explode(".", $file_other);
+                                        if ($file_id == $bien["id_bien"]):
+                                            ?>
+
+                                            <img src="<?= (string) $rep . $file ?>" alt="Image" class="img">
+
+                                            <?php
+                                            break;
+                                        endif;
+                                    endforeach;
+                                    ?>
+                                    <div class="image-loader"></div>
+                                </div>
+                                <div class="description">
+                                    <p class="text">
+                                        <?= $bien["description"] ?>
+                                    </p>
+                                    <div class="button">
+                                        <button>
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                            &nbsp;
+                                            <a href="./show_one.php?token=<?= base64_encode($bien["id_bien"]) ?>">Voir plus</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        endif;
+                    endforeach;
+                    ?>
+                    <div class="ads">
+                        <span class="info">
+                            Logoments bientot disponibles !!
+                        </span>
+                        <div class="ads-img">
+                            <?php foreach ($files as $file): ?>
+                                <img src="<?= (string) $rep . $file ?>" alt="image" class="ads-images">
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="ads-buttons">
+                            <i class="fa fa-chevron-circle-left scroll-buttons-left"></i>
+                            <i class="fa fa-chevron-circle-right scroll-buttons-right"></i>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <?php
+                }
+                $i >= floor(sizeof($allBienImmobilier) / 2) ? $i += 2 : $i++;
+            endforeach;
 
-            <div class="ads">
-                <span class="info">
-                    Logoments bientot disponibles !!
-                </span>
-                <div class="ads-img">
-                    <img src="../../Img/pexels-chait-goli-1918290.jpg" alt="pub 1" class="ads-images">
-                    <img src="../../Img/pexels-ivan-siarbolin-3695799.jpg" alt="pub 2" class="ads-images">
-                    <img src="../../Img/pexels-merlin-lightpainting-11167644.jpg" alt="pub 3" class="ads-images">
-                    <img src="../../Img/pexels-sebastiaan-stam-1097456.jpg" alt="pub 1" class="ads-images">
-                    <img src="../../Img/use.png" alt="pub 1" class="ads-images">
+            ?>
 
-                    <img src="../../Img/pexels-chait-goli-1918290.jpg" alt="pub 1" class="ads-images">
-                    <img src="../../Img/pexels-ivan-siarbolin-3695799.jpg" alt="pub 2" class="ads-images">
-                    <img src="../../Img/pexels-merlin-lightpainting-11167644.jpg" alt="pub 3" class="ads-images">
-                    <img src="../../Img/pexels-sebastiaan-stam-1097456.jpg" alt="pub 1" class="ads-images">
-                    <img src="../../Img/use.png" alt="pub 1" class="ads-images">
+            <hr />
+            <div id="reviews">
+                <div id="review-first">
+                    <h2>Avis <i class="fa fa-star-half-o"></i></h2>
+                    <a href="./reviews.php"><i class="fa fa-eye"></i>&nbsp;Tout voir</a>
                 </div>
-                <div class="ads-buttons">
-                    <i class="fa fa-chevron-circle-left scroll-buttons-left"></i>
-                    <i class="fa fa-chevron-circle-right scroll-buttons-right"></i>
-                </div>
-            </div>
+                <hr>
+                <h2>Donnez votre avis</h2>
 
-            <div class="habitat house no-choised">
-                <div class="images load">
-                    <img src="../../Img/pexels-chait-goli-1918290.jpg" alt="Image" class="img">
-                    <div class="image-loader"></div>
-                </div>
-                <div class="description">
-                    <p class="text">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur eligendi neque quas quo ad natus, maiores quam debitis adipisci earum at sequi quibusdam accusantium ducimus soluta ut pariatur dolorem exercitationem a commodi est recusandae. Corrupti reiciendis similique veritatis odio at autem, sed laborum! Perferendis totam porro fugit! Quae quisquam, inventore animi nemo quas quia error neque architecto beatae cum nesciunt! Voluptatem ab dicta alias suscipit minima nulla, repellat error adipisci qui, expedita veniam possimus ex non dolore nobis a. Asperiores officia harum facilis error illo, ut voluptatum ab iste vero sed, facere praesentium eum fugiat suscipit, blanditiis odio ullam magnam aliquam laboriosam delectus ducimus ipsam! Dolore quod voluptate illum quisquam sed maxime quidem, in fuga, ipsam, deleniti est deserunt temporibus saepe ullam quibusdam totam tempora ducimus laudantium! Quos debitis eum animi quae est, nostrum tempora, dolorem earum ratione cum exercitationem doloribus, et deserunt molestias facilis quis omnis qui rerum eligendi. Perferendis, adipisci quisquam quam dolorum possimus labore atque nesciunt quis est? Quia, odit nobis temporibus in nemo consequatur assumenda id non inventore aliquid magnam porro sequi corrupti voluptatum at doloribus blanditiis esse modi explicabo! Omnis magni odit et ad mollitia, hic iusto optio architecto fugiat ea quisquam dicta consequatur soluta est unde magnam minima non. Adipisci quod eum fugit, quidem neque rem delectus maiores sunt sed harum enim nihil tempore totam, odio dolores iure eos voluptate illo veritatis quas amet quam nobis. Dignissimos aut provident corporis iusto? Ut officia obcaecati quo optio veniam expedita distinctio minus ipsa? Eius doloribus amet iure blanditiis odio. Impedit aliquid cum labore? Iusto quo officia est voluptatum, veritatis quod, enim accusantium vero magnam dicta sit expedita suscipit, quis iste alias doloremque eos libero maxime laboriosam! Fugiat accusantium libero earum ut rem excepturi fugit magni quos quae, mollitia recusandae dolorum voluptates omnis culpa repellat laborum est incidunt dolore dolor maiores at. Eos reiciendis quaerat aut itaque saepe iusto corporis iure voluptatum libero, animi commodi doloribus. Praesentium, autem sint nam porro debitis ut similique nostrum odit quia omnis. Omnis nam veniam nobis ad cumque ipsam odio sapiente non officia! Molestias mollitia, odio voluptates sint beatae perferendis deleniti dolor quidem distinctio cumque? Nesciunt minus voluptatem, ducimus reiciendis officia tempora similique. Laborum ut odio rem quibusdam, mollitia voluptates saepe sequi? Natus, provident consequuntur! Inventore voluptatum fugiat ipsa minus recusandae, veritatis cumque, libero corrupti ab asperiores voluptatem illo dolores culpa eligendi quam? Adipisci dignissimos deserunt, quos labore atque inventore magni numquam consequatur error, est maiores veritatis nostrum natus accusantium quisquam dolorum similique placeat sapiente. Cum nesciunt quod magni, odit quos cupiditate nostrum harum expedita vitae animi blanditiis accusamus ipsum illo ullam impedit qui iusto, delectus obcaecati sed deleniti? Voluptate nobis similique expedita eius perferendis ex architecto eum error quis! Cupiditate soluta nostrum eum possimus. Molestias veritatis et temporibus officia eum. Ipsum quisquam recusandae provident! Commodi hic expedita, aspernatur alias modi, obcaecati cupiditate dolore magni necessitatibus asperiores et debitis nesciunt labore pariatur provident! Est, odio? Facilis dignissimos modi, aliquam quos repudiandae nemo, explicabo, a ex sed quam magni numquam tempora. Magni vitae dolorem dignissimos voluptas alias exercitationem in, odit, sit placeat commodi nulla atque ipsum labore ipsa incidunt. Quaerat in alias rem amet error earum rerum omnis qui repudiandae quia vitae delectus, natus dignissimos, soluta fuga beatae. Incidunt voluptas magnam dicta maxime! Veritatis nemo repellat eos illum dicta enim reiciendis quae voluptatum quas, explicabo autem molestias sit obcaecati iure error ut. Praesentium blanditiis repellendus fugit provident doloribus cupiditate temporibus eius, officia, autem, qui obcaecati cum maiores molestias dignissimos? Rem officia inventore, blanditiis dolorum nulla odio. Reprehenderit quasi ut amet minus harum vitae velit magni, possimus deleniti fugit fugiat sunt iste animi vero tenetur reiciendis! Est libero exercitationem ipsa repellat vel, soluta assumenda accusantium reprehenderit deleniti at molestias quis incidunt necessitatibus voluptas inventore eum, sapiente nisi facere! Sint sequi laborum sit ullam qui, nobis unde aliquam ea quae earum nisi, accusamus placeat id iusto natus quisquam quidem accusantium! Illo atque possimus quos, eum explicabo eos? Voluptatibus quia temporibus pariatur dignissimos fuga modi expedita porro. Ducimus ab animi saepe deserunt. Maiores sit molestias ut neque quae nostrum officiis aspernatur in, cumque recusandae necessitatibus quasi dolorem velit odio tempora ea, quo quidem sunt dignissimos modi? Animi ad provident quibusdam dolores harum voluptates autem repellat nobis cumque maxime, quam blanditiis, molestias obcaecati cum soluta! Placeat beatae sapiente porro odio ducimus voluptates asperiores, officiis vel totam eligendi. Cum perferendis quas modi inventore similique corporis dolorum fuga sint incidunt illo officia et porro deserunt, placeat quod, ut, doloribus eius ad omnis tenetur? Doloremque error, ex maiores labore architecto voluptates, eveniet minima, deleniti accusamus aperiam sunt reprehenderit! Eum fugiat ad ipsa tempore repellat. Possimus eaque, exercitationem odit reiciendis aliquam, excepturi consequatur cupiditate, officia quo doloremque odio eius sit culpa. Assumenda quidem ea tempore beatae placeat! Recusandae maiores nam, tempore dolorum voluptatem ut dolore! Non, consequuntur ea cum eaque amet, nemo perferendis impedit provident laborum saepe est odio numquam officiis? Numquam suscipit quam incidunt aliquam rerum architecto autem, dolorem, mollitia magnam laboriosam nihil porro. Porro unde velit, quae saepe repellendus nesciunt maiores ea reprehenderit excepturi enim recusandae nam minus reiciendis animi dicta iste aut a placeat soluta minima eaque tempora. Dolorem deleniti neque, tempore at, nesciunt amet pariatur, velit animi quae quas et doloribus possimus maxime voluptatum. Perferendis nobis quaerat illum totam eum mollitia laboriosam, saepe explicabo nulla eveniet ipsa iusto cupiditate quis unde? Repudiandae voluptas id ipsum nisi sit quisquam repellat, placeat aliquid optio, fuga consequatur ipsa non nulla voluptates sint. Esse, natus? Cumque fugiat suscipit vero pariatur, officiis ipsam, harum repellat eveniet libero tempora nemo perferendis quo natus ab reiciendis asperiores quis nulla doloribus! Ducimus, recusandae. Et, enim placeat laboriosam culpa non modi optio odio similique cupiditate consectetur possimus deleniti hic, quidem dolorum expedita reprehenderit. Rem modi voluptas dolore officia consectetur praesentium obcaecati dicta, unde dolorem, nam, facere nostrum provident ut suscipit molestiae repellendus facilis sit minima officiis sequi earum! Accusantium maxime ex quasi tenetur illum corrupti, assumenda nulla aspernatur optio maiores aliquam magni ut, impedit sed deleniti animi neque accusamus iure fuga eius atque repellendus ea.
-                    </p>
-                    <div class="button">
-                        <button>
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                            &nbsp;
-                            <a href="./show_one.php">Voir plus</a>
-                        </button>
+                <?php for ($j = 0; $j <= 2; $j++): ?>
+
+                    <div class="review-content">
+                        <div class="review-header">
+                            <img src="../../Img/use.png" alt="img" class="review-img">
+                            <div class="review-name-time">
+
+                                <?php
+                                foreach ($all_users as $user):
+                                    foreach ($joins as $join):
+                                        if ($gets[$j]["id_avis"] === $join["id_avis"] && $join["iduser"] === $user["iduser"]) {
+                                            ?>
+                                            <span class="name"><?= $user["nom"]; ?></span>
+
+                                            <?php
+                                        }
+                                        if ($gets[$j]['id_avis'] == $join["id_avis"] && $join["iduser"] === $user["iduser"]):
+                                            [$year, $month, $day] = explode("-", $join["date"]);
+                                            [$hour, $minutes, $seconds] = preg_split("/:/", $day);
+                                            [$realDay, $realHour] = preg_split("/\s/", $hour);
+                                            $str = "Le " . (string) $realDay . "/" . $month . "/" . $year . " à " . $realHour . ":" . $minutes . ":" . $seconds;
+
+                                            ?>
+                                            <span class="date"><?= $str; ?></span>
+                                            <?php
+                                        endif;
+                                    endforeach;
+                                endforeach;
+                                ?>
+
+                                <div id="review-stars">
+                                    <?php for ($i = 0; $i < $gets[$j]["note"]; $i++): ?>
+                                        <i class="fa fa-star-half-o"></i>
+                                    <?php endfor; ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-body">
+                            <p>
+                                <?= $gets[$j]["commentaire"] ?>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="habitat studio no-choised">
-                <div class="images load">
-                    <img src="../../Img/pexels-merlin-lightpainting-11167644.jpg" alt="Image" class="img">
-                    <div class="image-loader"></div>
-                </div>
-                <div class="description">
-                    <p class="text">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur eligendi neque quas quo ad natus, maiores quam debitis adipisci earum at sequi quibusdam accusantium ducimus soluta ut pariatur dolorem exercitationem a commodi est recusandae. Corrupti reiciendis similique veritatis odio at autem, sed laborum! Perferendis totam porro fugit! Quae quisquam, inventore animi nemo quas quia error neque architecto beatae cum nesciunt! Voluptatem ab dicta alias suscipit minima nulla, repellat error adipisci qui, expedita veniam possimus ex non dolore nobis a. Asperiores officia harum facilis error illo, ut voluptatum ab iste vero sed, facere praesentium eum fugiat suscipit, blanditiis odio ullam magnam aliquam laboriosam delectus ducimus ipsam! Dolore quod voluptate illum quisquam sed maxime quidem, in fuga, ipsam, deleniti est deserunt temporibus saepe ullam quibusdam totam tempora ducimus laudantium! Quos debitis eum animi quae est, nostrum tempora, dolorem earum ratione cum exercitationem doloribus, et deserunt molestias facilis quis omnis qui rerum eligendi. Perferendis, adipisci quisquam quam dolorum possimus labore atque nesciunt quis est? Quia, odit nobis temporibus in nemo consequatur assumenda id non inventore aliquid magnam porro sequi corrupti voluptatum at doloribus blanditiis esse modi explicabo! Omnis magni odit et ad mollitia, hic iusto optio architecto fugiat ea quisquam dicta consequatur soluta est unde magnam minima non. Adipisci quod eum fugit, quidem neque rem delectus maiores sunt sed harum enim nihil tempore totam, odio dolores iure eos voluptate illo veritatis quas amet quam nobis. Dignissimos aut provident corporis iusto? Ut officia obcaecati quo optio veniam expedita distinctio minus ipsa? Eius doloribus amet iure blanditiis odio. Impedit aliquid cum labore? Iusto quo officia est voluptatum, veritatis quod, enim accusantium vero magnam dicta sit expedita suscipit, quis iste alias doloremque eos libero maxime laboriosam! Fugiat accusantium libero earum ut rem excepturi fugit magni quos quae, mollitia recusandae dolorum voluptates omnis culpa repellat laborum est incidunt dolore dolor maiores at. Eos reiciendis quaerat aut itaque saepe iusto corporis iure voluptatum libero, animi commodi doloribus. Praesentium, autem sint nam porro debitis ut similique nostrum odit quia omnis. Omnis nam veniam nobis ad cumque ipsam odio sapiente non officia! Molestias mollitia, odio voluptates sint beatae perferendis deleniti dolor quidem distinctio cumque? Nesciunt minus voluptatem, ducimus reiciendis officia tempora similique. Laborum ut odio rem quibusdam, mollitia voluptates saepe sequi? Natus, provident consequuntur! Inventore voluptatum fugiat ipsa minus recusandae, veritatis cumque, libero corrupti ab asperiores voluptatem illo dolores culpa eligendi quam? Adipisci dignissimos deserunt, quos labore atque inventore magni numquam consequatur error, est maiores veritatis nostrum natus accusantium quisquam dolorum similique placeat sapiente. Cum nesciunt quod magni, odit quos cupiditate nostrum harum expedita vitae animi blanditiis accusamus ipsum illo ullam impedit qui iusto, delectus obcaecati sed deleniti? Voluptate nobis similique expedita eius perferendis ex architecto eum error quis! Cupiditate soluta nostrum eum possimus. Molestias veritatis et temporibus officia eum. Ipsum quisquam recusandae provident! Commodi hic expedita, aspernatur alias modi, obcaecati cupiditate dolore magni necessitatibus asperiores et debitis nesciunt labore pariatur provident! Est, odio? Facilis dignissimos modi, aliquam quos repudiandae nemo, explicabo, a ex sed quam magni numquam tempora. Magni vitae dolorem dignissimos voluptas alias exercitationem in, odit, sit placeat commodi nulla atque ipsum labore ipsa incidunt. Quaerat in alias rem amet error earum rerum omnis qui repudiandae quia vitae delectus, natus dignissimos, soluta fuga beatae. Incidunt voluptas magnam dicta maxime! Veritatis nemo repellat eos illum dicta enim reiciendis quae voluptatum quas, explicabo autem molestias sit obcaecati iure error ut. Praesentium blanditiis repellendus fugit provident doloribus cupiditate temporibus eius, officia, autem, qui obcaecati cum maiores molestias dignissimos? Rem officia inventore, blanditiis dolorum nulla odio. Reprehenderit quasi ut amet minus harum vitae velit magni, possimus deleniti fugit fugiat sunt iste animi vero tenetur reiciendis! Est libero exercitationem ipsa repellat vel, soluta assumenda accusantium reprehenderit deleniti at molestias quis incidunt necessitatibus voluptas inventore eum, sapiente nisi facere! Sint sequi laborum sit ullam qui, nobis unde aliquam ea quae earum nisi, accusamus placeat id iusto natus quisquam quidem accusantium! Illo atque possimus quos, eum explicabo eos? Voluptatibus quia temporibus pariatur dignissimos fuga modi expedita porro. Ducimus ab animi saepe deserunt. Maiores sit molestias ut neque quae nostrum officiis aspernatur in, cumque recusandae necessitatibus quasi dolorem velit odio tempora ea, quo quidem sunt dignissimos modi? Animi ad provident quibusdam dolores harum voluptates autem repellat nobis cumque maxime, quam blanditiis, molestias obcaecati cum soluta! Placeat beatae sapiente porro odio ducimus voluptates asperiores, officiis vel totam eligendi. Cum perferendis quas modi inventore similique corporis dolorum fuga sint incidunt illo officia et porro deserunt, placeat quod, ut, doloribus eius ad omnis tenetur? Doloremque error, ex maiores labore architecto voluptates, eveniet minima, deleniti accusamus aperiam sunt reprehenderit! Eum fugiat ad ipsa tempore repellat. Possimus eaque, exercitationem odit reiciendis aliquam, excepturi consequatur cupiditate, officia quo doloremque odio eius sit culpa. Assumenda quidem ea tempore beatae placeat! Recusandae maiores nam, tempore dolorum voluptatem ut dolore! Non, consequuntur ea cum eaque amet, nemo perferendis impedit provident laborum saepe est odio numquam officiis? Numquam suscipit quam incidunt aliquam rerum architecto autem, dolorem, mollitia magnam laboriosam nihil porro. Porro unde velit, quae saepe repellendus nesciunt maiores ea reprehenderit excepturi enim recusandae nam minus reiciendis animi dicta iste aut a placeat soluta minima eaque tempora. Dolorem deleniti neque, tempore at, nesciunt amet pariatur, velit animi quae quas et doloribus possimus maxime voluptatum. Perferendis nobis quaerat illum totam eum mollitia laboriosam, saepe explicabo nulla eveniet ipsa iusto cupiditate quis unde? Repudiandae voluptas id ipsum nisi sit quisquam repellat, placeat aliquid optio, fuga consequatur ipsa non nulla voluptates sint. Esse, natus? Cumque fugiat suscipit vero pariatur, officiis ipsam, harum repellat eveniet libero tempora nemo perferendis quo natus ab reiciendis asperiores quis nulla doloribus! Ducimus, recusandae. Et, enim placeat laboriosam culpa non modi optio odio similique cupiditate consectetur possimus deleniti hic, quidem dolorum expedita reprehenderit. Rem modi voluptas dolore officia consectetur praesentium obcaecati dicta, unde dolorem, nam, facere nostrum provident ut suscipit molestiae repellendus facilis sit minima officiis sequi earum! Accusantium maxime ex quasi tenetur illum corrupti, assumenda nulla aspernatur optio maiores aliquam magni ut, impedit sed deleniti animi neque accusamus iure fuga eius atque repellendus ea.
-                    </p>
-                    <div class="button">
-                        <button>
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                            &nbsp;
-                            <a href="./show_one.php">Voir plus</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
+                <?php endfor; ?>
 
-            <div class="habitat bedroom no-choised">
-                <div class="images load">
-                    <img src="../../Img/pexels-sebastiaan-stam-1097456.jpg" alt="Image" class="img">
-                    <div class="image-loader"></div>
-                </div>
-                <div class="description">
-                    <p class="text">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur eligendi neque quas quo ad natus, maiores quam debitis adipisci earum at sequi quibusdam accusantium ducimus soluta ut pariatur dolorem exercitationem a commodi est recusandae. Corrupti reiciendis similique veritatis odio at autem, sed laborum! Perferendis totam porro fugit! Quae quisquam, inventore animi nemo quas quia error neque architecto beatae cum nesciunt! Voluptatem ab dicta alias suscipit minima nulla, repellat error adipisci qui, expedita veniam possimus ex non dolore nobis a. Asperiores officia harum facilis error illo, ut voluptatum ab iste vero sed, facere praesentium eum fugiat suscipit, blanditiis odio ullam magnam aliquam laboriosam delectus ducimus ipsam! Dolore quod voluptate illum quisquam sed maxime quidem, in fuga, ipsam, deleniti est deserunt temporibus saepe ullam quibusdam totam tempora ducimus laudantium! Quos debitis eum animi quae est, nostrum tempora, dolorem earum ratione cum exercitationem doloribus, et deserunt molestias facilis quis omnis qui rerum eligendi. Perferendis, adipisci quisquam quam dolorum possimus labore atque nesciunt quis est? Quia, odit nobis temporibus in nemo consequatur assumenda id non inventore aliquid magnam porro sequi corrupti voluptatum at doloribus blanditiis esse modi explicabo! Omnis magni odit et ad mollitia, hic iusto optio architecto fugiat ea quisquam dicta consequatur soluta est unde magnam minima non. Adipisci quod eum fugit, quidem neque rem delectus maiores sunt sed harum enim nihil tempore totam, odio dolores iure eos voluptate illo veritatis quas amet quam nobis. Dignissimos aut provident corporis iusto? Ut officia obcaecati quo optio veniam expedita distinctio minus ipsa? Eius doloribus amet iure blanditiis odio. Impedit aliquid cum labore? Iusto quo officia est voluptatum, veritatis quod, enim accusantium vero magnam dicta sit expedita suscipit, quis iste alias doloremque eos libero maxime laboriosam! Fugiat accusantium libero earum ut rem excepturi fugit magni quos quae, mollitia recusandae dolorum voluptates omnis culpa repellat laborum est incidunt dolore dolor maiores at. Eos reiciendis quaerat aut itaque saepe iusto corporis iure voluptatum libero, animi commodi doloribus. Praesentium, autem sint nam porro debitis ut similique nostrum odit quia omnis. Omnis nam veniam nobis ad cumque ipsam odio sapiente non officia! Molestias mollitia, odio voluptates sint beatae perferendis deleniti dolor quidem distinctio cumque? Nesciunt minus voluptatem, ducimus reiciendis officia tempora similique. Laborum ut odio rem quibusdam, mollitia voluptates saepe sequi? Natus, provident consequuntur! Inventore voluptatum fugiat ipsa minus recusandae, veritatis cumque, libero corrupti ab asperiores voluptatem illo dolores culpa eligendi quam? Adipisci dignissimos deserunt, quos labore atque inventore magni numquam consequatur error, est maiores veritatis nostrum natus accusantium quisquam dolorum similique placeat sapiente. Cum nesciunt quod magni, odit quos cupiditate nostrum harum expedita vitae animi blanditiis accusamus ipsum illo ullam impedit qui iusto, delectus obcaecati sed deleniti? Voluptate nobis similique expedita eius perferendis ex architecto eum error quis! Cupiditate soluta nostrum eum possimus. Molestias veritatis et temporibus officia eum. Ipsum quisquam recusandae provident! Commodi hic expedita, aspernatur alias modi, obcaecati cupiditate dolore magni necessitatibus asperiores et debitis nesciunt labore pariatur provident! Est, odio? Facilis dignissimos modi, aliquam quos repudiandae nemo, explicabo, a ex sed quam magni numquam tempora. Magni vitae dolorem dignissimos voluptas alias exercitationem in, odit, sit placeat commodi nulla atque ipsum labore ipsa incidunt. Quaerat in alias rem amet error earum rerum omnis qui repudiandae quia vitae delectus, natus dignissimos, soluta fuga beatae. Incidunt voluptas magnam dicta maxime! Veritatis nemo repellat eos illum dicta enim reiciendis quae voluptatum quas, explicabo autem molestias sit obcaecati iure error ut. Praesentium blanditiis repellendus fugit provident doloribus cupiditate temporibus eius, officia, autem, qui obcaecati cum maiores molestias dignissimos? Rem officia inventore, blanditiis dolorum nulla odio. Reprehenderit quasi ut amet minus harum vitae velit magni, possimus deleniti fugit fugiat sunt iste animi vero tenetur reiciendis! Est libero exercitationem ipsa repellat vel, soluta assumenda accusantium reprehenderit deleniti at molestias quis incidunt necessitatibus voluptas inventore eum, sapiente nisi facere! Sint sequi laborum sit ullam qui, nobis unde aliquam ea quae earum nisi, accusamus placeat id iusto natus quisquam quidem accusantium! Illo atque possimus quos, eum explicabo eos? Voluptatibus quia temporibus pariatur dignissimos fuga modi expedita porro. Ducimus ab animi saepe deserunt. Maiores sit molestias ut neque quae nostrum officiis aspernatur in, cumque recusandae necessitatibus quasi dolorem velit odio tempora ea, quo quidem sunt dignissimos modi? Animi ad provident quibusdam dolores harum voluptates autem repellat nobis cumque maxime, quam blanditiis, molestias obcaecati cum soluta! Placeat beatae sapiente porro odio ducimus voluptates asperiores, officiis vel totam eligendi. Cum perferendis quas modi inventore similique corporis dolorum fuga sint incidunt illo officia et porro deserunt, placeat quod, ut, doloribus eius ad omnis tenetur? Doloremque error, ex maiores labore architecto voluptates, eveniet minima, deleniti accusamus aperiam sunt reprehenderit! Eum fugiat ad ipsa tempore repellat. Possimus eaque, exercitationem odit reiciendis aliquam, excepturi consequatur cupiditate, officia quo doloremque odio eius sit culpa. Assumenda quidem ea tempore beatae placeat! Recusandae maiores nam, tempore dolorum voluptatem ut dolore! Non, consequuntur ea cum eaque amet, nemo perferendis impedit provident laborum saepe est odio numquam officiis? Numquam suscipit quam incidunt aliquam rerum architecto autem, dolorem, mollitia magnam laboriosam nihil porro. Porro unde velit, quae saepe repellendus nesciunt maiores ea reprehenderit excepturi enim recusandae nam minus reiciendis animi dicta iste aut a placeat soluta minima eaque tempora. Dolorem deleniti neque, tempore at, nesciunt amet pariatur, velit animi quae quas et doloribus possimus maxime voluptatum. Perferendis nobis quaerat illum totam eum mollitia laboriosam, saepe explicabo nulla eveniet ipsa iusto cupiditate quis unde? Repudiandae voluptas id ipsum nisi sit quisquam repellat, placeat aliquid optio, fuga consequatur ipsa non nulla voluptates sint. Esse, natus? Cumque fugiat suscipit vero pariatur, officiis ipsam, harum repellat eveniet libero tempora nemo perferendis quo natus ab reiciendis asperiores quis nulla doloribus! Ducimus, recusandae. Et, enim placeat laboriosam culpa non modi optio odio similique cupiditate consectetur possimus deleniti hic, quidem dolorum expedita reprehenderit. Rem modi voluptas dolore officia consectetur praesentium obcaecati dicta, unde dolorem, nam, facere nostrum provident ut suscipit molestiae repellendus facilis sit minima officiis sequi earum! Accusantium maxime ex quasi tenetur illum corrupti, assumenda nulla aspernatur optio maiores aliquam magni ut, impedit sed deleniti animi neque accusamus iure fuga eius atque repellendus ea.
-                    </p>
-                    <div class="button">
-                        <button>
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                            &nbsp;
-                            <a href="./show_one.php">Voir plus</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ads">
-                <span class="info">
-                    Logoments bientot disponibles !!
-                </span>
-                <div class="ads-img">
-                    <img src="../../Img/pexels-chait-goli-1918290.jpg" alt="pub 1" class="ads-images">
-                    <img src="../../Img/pexels-ivan-siarbolin-3695799.jpg" alt="pub 2" class="ads-images">
-                    <img src="../../Img/pexels-merlin-lightpainting-11167644.jpg" alt="pub 3" class="ads-images">
-                    <img src="../../Img/pexels-sebastiaan-stam-1097456.jpg" alt="pub 1" class="ads-images">
-                    <img src="../../Img/use.png" alt="pub 1" class="ads-images">
-
-                    <img src="../../Img/pexels-chait-goli-1918290.jpg" alt="pub 1" class="ads-images">
-                    <img src="../../Img/pexels-ivan-siarbolin-3695799.jpg" alt="pub 2" class="ads-images">
-                    <img src="../../Img/pexels-merlin-lightpainting-11167644.jpg" alt="pub 3" class="ads-images">
-                    <img src="../../Img/pexels-sebastiaan-stam-1097456.jpg" alt="pub 1" class="ads-images">
-                    <img src="../../Img/use.png" alt="pub 1" class="ads-images">
-                </div>
-                <div class="ads-buttons">
-                    <i class="fa fa-chevron-circle-left scroll-buttons-left"></i>
-                    <i class="fa fa-chevron-circle-right scroll-buttons-right"></i>
-                </div>
             </div>
         </div>
 

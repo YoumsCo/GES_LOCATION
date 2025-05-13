@@ -3,9 +3,11 @@ export const createHTMLElement = (type, message = "OK", tabText = ["Anuuler", "C
         case "warning":
             return handleWarning(message, tabText, link);
         case "alert":
-            return handleAlert(message);
+            return handleAlert(message, link = null);
         case "box":
             return handleBox(message, tabText);
+        case "notification":
+            return notification(message);
 
         default: undefined;
     }
@@ -38,7 +40,9 @@ const handleWarning = (message, buttonText, link) => {
     firstChildButton.addEventListener("click", function () {
         parent.classList.add("box-hidden");
         setTimeout(() => {
-            document.querySelector("#container").removeChild(parent);
+            if (document.querySelector("#contain-box")) {
+                document.querySelector("#container").removeChild(parent);
+            }
         }, 3000);
     });
 
@@ -48,7 +52,7 @@ const handleWarning = (message, buttonText, link) => {
 };
 
 
-const handleAlert = (message) => {
+const handleAlert = (message, link) => {
     const parent = document.createElement("div");
     const firstChild = document.createElement("p");
     const lastChild = document.createElement("i");
@@ -64,27 +68,73 @@ const handleAlert = (message) => {
     document.querySelector("#container").appendChild(parent);
 
     lastChild.addEventListener("click", function () {
-        parent.classList.add("alertHide");
+        if (link !== null) {
+            location.href = link;
+        }
+        else if (!parent.classList.contains("alertHide")) {
+            parent.classList.add("alertHide");
+            setTimeout(function () {
+                parent.classList.add("alertHidden");
+            }, 1000);
+
+            setTimeout(function () {
+                if (document.querySelector("#alertBox")) {
+                    document.querySelector("#container").removeChild(parent);
+                }
+            }, 2500);
+        }
+    });
+
+    if (!parent.classList.contains("alertHide")) {
+        setTimeout(function () {
+            parent.classList.add("alertHide");
+        }, 4000);
         setTimeout(function () {
             parent.classList.add("alertHidden");
-        }, 1000);
-        setTimeout(function () {
-            document.querySelector("#container").removeChild(parent);
-        }, 2000);
-    });
-    
-    setTimeout(function () {
-        parent.classList.add("alertHide");
-    }, 5000);
-    
-    setTimeout(function () {
-        parent.classList.add("alertHidden");
-    }, 6000);
+        }, 5000);
 
-    setTimeout(function () {
-        document.querySelector("#container").removeChild(parent);
-    }, 7000);
+        setTimeout(function () {
+            if (document.querySelector("#alertBox")) {
+                document.querySelector("#container").removeChild(parent);
+            }
+        }, 7000);
+    }
 };
+
+const notification = (message) => {
+    const parent = document.createElement("div");
+    const content = document.createElement("p");
+    const closeButton = document.createElement("i")
+
+    parent.setAttribute("id", "notification");
+    content.setAttribute("id", "content");
+    closeButton.setAttribute("class", "fa fa-close");
+    closeButton.setAttribute("id", "notif-closed");
+
+    content.innerText = message;
+    parent.appendChild(content);
+    parent.appendChild(closeButton);
+    document.querySelector("#container").appendChild(parent);
+
+    closeButton.addEventListener("click", function () {
+        parent.classList.add("box-hidden");
+        setTimeout(() => {
+            if (document.querySelector("#notification")) {
+                document.querySelector("#container").removeChild(parent);
+            }
+        }, 2000);
+
+    });
+
+    setTimeout(() => {
+        parent.classList.add("box-hidden");
+        setTimeout(() => {
+            if (document.querySelector("#notification")) {
+                document.querySelector("#container").removeChild(parent);
+            }
+        }, 2000);
+    }, 15000);
+}
 
 export const cookieParent = {
     "name": "cookiesAllowed",
@@ -120,7 +170,9 @@ const handleBox = (message, buttonText) => {
         if (localStorage.getItem(cookieParent.name)) {
             parent.classList.add("box-hidden");
             setTimeout(() => {
-                document.querySelector("#container").removeChild(parent);
+                if (document.querySelector("#messageBox")) {
+                    document.querySelector("#container").removeChild(parent);
+                }
             }, 2000);
         }
         else {
@@ -129,35 +181,63 @@ const handleBox = (message, buttonText) => {
     });
 
     lastChildButton.addEventListener("click", function () {
-        const cookie = document.cookie = cookieParent.name + "=" + cookieParent.value + ";expires=" + cookieParent.expires;
+        const cookie = document.cookie = cookieParent.name + "=" + cookieParent.value + ";expires=" + cookieParent.expires + ";path=/";
         cookie;
         if (document.cookie) {
             parent.classList.add("box-hidden");
             setTimeout(() => {
-                document.querySelector("#container").removeChild(parent);
+                if (document.querySelector("#messageBox")) {
+                    document.querySelector("#container").removeChild(parent);
+                }
             }, 2000);
         }
     });
 };
 
 export const handleAllowCookie = () => {
+    let returnValue = false;
     if (document.cookie) {
         const cookiesList = document.cookie.split(";");
 
         for (let i = 0; i < cookiesList.length; i++) {
             const [cookieName, cookieValue] = cookiesList[i].split("=");
             if (cookieName.trim() === cookieParent.name && cookieValue.trim() === cookieParent.value) {
-                return cookieValue;
+                // return cookieValue;
+                returnValue = cookieValue;
+            }
+            else {
+                returnValue = false;
             }
         }
     }
     else {
-        return false;
+        returnValue = false;
     }
+
+    return returnValue;
 }
 
 export const createCookie = (text = "Ce site utilise des cookies pour une meilleure gestion des données.\nPermettez-vous à ce site d'utiliser les cookies ?") => {
     setTimeout(function () {
         createHTMLElement("box", text, ["Refuser", "Accepter"]);
     }, 3000);
+}
+
+export const checkAllowCoookies = () => {
+    if (handleAllowCookie() !== false) {
+        console.log(handleAllowCookie());
+    }
+    else if (!handleAllowCookie() && !localStorage.getItem(cookieParent.name)) {
+        // createCookie();
+    }
+}
+
+export const checkAuthentication = () => {
+    if (localStorage.getItem("login")) {
+        const authenticationButtons = document.querySelectorAll(".space-buttons");
+
+        authenticationButtons.forEach(button => {
+            button.style.display = "none";
+        });
+    }
 }

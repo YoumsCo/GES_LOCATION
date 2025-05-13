@@ -1,0 +1,87 @@
+:root {
+    --search-transition-prefer: all .4s ease-in-out;
+    --search-default-color: whitesmoke;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#searchBar-container {
+    transition: var(--search-transition-prefer);
+    position: relative;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchBar-container #searchBar {
+    transition: var(--search-transition-prefer);
+    width: 100%;
+    height: 35px;
+    display: flex;
+    border: 2px solid var(--search-default-color);
+    background: transparent;
+    color: var(--search-default-color);
+    padding: 0 50px;
+    font-size: 13pt;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px var(--search-default-color); 
+}
+
+#searchBar-container #searchBar:focus {
+    transition: var(--search-transition-prefer);
+    box-shadow: inset 0 3px 10px var(--search-default-color); 
+}
+
+#searchBar-container #searchBar::placeholder {
+    transition: var(--search-transition-prefer);
+    color: var(--search-default-color);
+}
+
+@media screen and (max-width: 800px) {
+    #searchBar-container #searchBar::placeholder {
+        transition: var(--search-transition-prefer);
+        font-size: 11pt;
+    }
+}
+
+#searchBar-container .fa:hover {
+    transition: var(--search-transition-prefer);
+    transform: scale(1.2);
+    box-shadow: 0 5px 10px var(--search-default-color); 
+    cursor: pointer;
+}
+
+#searchBar-container .fa:active {
+    transition: var(--search-transition-prefer);
+    transform: scale(.7) !important;
+}
+
+#searchBar-container .fa-search {
+    transition: var(--search-transition-prefer);
+    position: absolute;
+    right: 20px;
+    color: var(--search-default-color);
+    font-size: 15pt;
+}
+
+
+#searchBar-container .fa-close {
+    transition: var(--search-transition-prefer);
+    position: absolute;
+    left: 20px;
+    color: var(--search-default-color);
+    font-size: 15pt;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#searchBar-container .fa-close.show {
+    transition: var(--search-transition-prefer);
+    opacity: 1;
+    pointer-events: initial;
+}

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../Styles/dark/loaders/loader_1.css">
+<link rel="stylesheet" href="../../Styles/loaders/loader_1.css">
 <div id="container-loader">
     <div class="loader-point"></div>
     <div class="loader-point"></div>

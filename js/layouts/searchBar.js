@@ -22,7 +22,7 @@ function Search(page) {
         let result;
 
         texts.forEach(text => {
-            if (text.textContent.toLowerCase().indexOf(searchValue) !== -1) {
+            if (text.textContent.toLowerCase().trim().indexOf(searchValue) !== -1) {
                 const textParent = text.closest(".habitat");
                 textParent.classList.contains("no-choised") && textParent.classList.remove("no-choised");
                 result = true;
@@ -32,7 +32,8 @@ function Search(page) {
                 textParent.classList.add("no-choised");
             }
         });
-
+        document.querySelector("#reviews").style.display = "none";
+        
         return result;
     }
 };
@@ -105,19 +106,23 @@ search.addEventListener("keyup", function (e) {
 
 searchReset.addEventListener("click", function () {
     const sections = document.querySelectorAll(".habitat");
-
+    const buttons = document.querySelectorAll(".filter-buttons");
+    
+    document.querySelector("#reviews").style.display = "initial";
     search.value = "";
     searchReset.classList.remove("show");
-
+    
     sections.forEach(section => {
         section.classList.contains("no-choised") && section.classList.remove("no-choised");
     });
-
+    
     if (document.querySelector("#result")) {
         document.querySelector("#content").removeChild(document.querySelector("#result"));
     }
     showCategory(null, true);
-    toggleAds(false);
+    if (localStorage.getItem("filter-value") && localStorage.getItem("filter-value") === buttons[0].textContent) {
+        toggleAds(false);
+    }
 });
 
 searchButton.addEventListener("click", function () {

@@ -1,0 +1,13 @@
+:root {
+    --controller-background: black;
+}
+
+@media screen and (prefer-color-scheme: light) {
+    :root {
+        --controller-background: white;
+    }
+}
+
+body {
+    background: var(--controller-background);
+}
