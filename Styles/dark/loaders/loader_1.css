@@ -1,0 +1,142 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#container-loader {
+    transition: all 2.5s ease-in-out;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    z-index: 200;
+    gap: 20px;
+}
+
+.loading-end {
+    transition: all .5s ease-in-out;
+    opacity: 0;
+    z-index: -1000 !important;
+}
+
+#container-loader .loader-point {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+#container-loader .loader-point:first-child {
+    animation-delay: 1s;
+    animation: loader-point-one 2s infinite linear;
+}
+
+#container-loader .loader-point:nth-child(2) {
+    animation-delay: 3s;
+    animation: loader-point-two 2s infinite linear;
+}
+
+#container-loader .loader-point:nth-child(3) {
+    animation-delay: 4s;
+    animation: loader-point-three 2s infinite linear;
+}
+
+#container-loader .loader-point:nth-child(4) {
+    animation-delay: 5s;
+    animation: loader-point-four 2s infinite linear;
+}
+
+#container-loader .loader-point:nth-child(5) {
+    animation-delay: 6s;
+    animation: loader-point-five 2s infinite linear;
+}
+
+@keyframes loader-point-one {
+    0% {
+        background: aquamarine;
+    }
+    
+    20% {
+        transform: translateY(-30px);
+    }
+    
+    30% {
+        transform: translateY(0);
+    }
+
+    50% {
+        background: black !important;
+    }
+}
+@keyframes loader-point-two {
+    0% {
+        background: aquamarine;
+    }
+
+    30% {
+        transform: translateY(-30px);
+    }
+    
+    40% {
+        transform: translateY(0);
+    }
+
+    70% {
+        background: black !important;
+    }
+}
+@keyframes loader-point-three {
+    0% {
+        background: aquamarine;
+    }
+
+    40% {
+        transform: translateY(-30px);
+    }
+    
+    50% {
+        transform: translateY(0);
+    }
+
+    80% {
+        background: black !important;
+    }
+}
+@keyframes loader-point-four {
+    0% {
+        background: aquamarine;
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
+    
+    60% {
+        transform: translateY(0);
+    }
+
+    90% {
+        background: black !important;
+    }
+}
+@keyframes loader-point-five {
+    0% {
+        background: aquamarine;
+    }
+
+    60% {
+        transform: translateY(-30px);
+    }
+    
+    70% {
+        transform: translateY(0);
+    }
+
+    100% {
+        background: black !important;
+    }
+}
+

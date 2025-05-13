@@ -1,0 +1,788 @@
+:root {
+    --background: black;
+    --background-rgba: rgba(0, 0, 0, 0.669);
+    --default-transition: all .4s ease-in-out;
+    --scroll-background: transparent;
+    --scroll-color: rgba(255, 255, 255, 0.443);
+    --default-color: whitesmoke;
+    --button-color: rgba(2, 2, 27, 0.957);
+    --button-opacity: 0.8;
+    --ads-buttons-background: rgba(0, 0, 0, 0.345);
+    --box-z-index: 500;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    behavior: smooth;
+    font-family: 'Times New Roman', serif;
+}
+
+::-webkit-scrollbar {
+    background: var(--scroll-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scroll-color);
+    border-radius: 20px;
+}
+
+body {
+    transition: var(--default-transition);
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--default-color);
+    overflow-x: hidden;
+}
+
+#container {
+    transition: var(--default-transition);
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#container #space {
+    transition: var(--default-transition);
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+#container #space .space-buttons {
+    transition: var(--default-transition);
+    position: relative;
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--default-color);
+    color: var(--button-color);
+    font-weight: 900;
+    opacity: var(--button-opacity);
+    border: 4px solid var(--default-color);
+}
+
+@media screen and (max-width: 500px) {
+    #container #space .space-buttons {
+        transition: var(--default-transition);
+        width: 100px;
+        height: 35px;
+        font-size: 12pt;
+    }
+    
+}
+
+#container #space .space-buttons:active {
+    transition: var(--default-transition);
+    transform: scale(0.7);
+}
+
+#container #space .space-buttons:hover {
+    transition: var(--default-transition);
+    cursor: pointer;
+    background: 0 0;
+    box-shadow: 0 3px 10px var(--default-color);
+}
+
+#container #space .space-buttons a {
+    transition: var(--default-transition);
+    color: var(--button-color);
+    font-size: 11pt;
+    text-decoration: none;
+}
+
+#container #space .space-buttons:hover a {
+    transition: var(--default-transition);
+    color: var(--default-color);
+}
+
+#container #space .space-buttons::before {
+    transition: var(--default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--background);
+}
+
+#container #space .space-buttons:hover::before {
+    transition: var(--default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #space .space-buttons::after {
+    transition: var(--default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--background);
+}
+
+#container #space .space-buttons:hover::after {
+    transition: var(--default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #space .space-buttons:hover::after {
+    transition: var(--default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #space #space-profile {
+    transition: var(--default-transition);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#container #space #theme-icon {
+    transition: var(--default-transition);
+    font-size: 20pt;
+    color: var(--default-color);
+    transform: translateY(2px);
+    filter: drop-shadow(0 5px 5px var(--default-color));
+    margin-right: 10px;
+}
+
+#container #space #theme-icon:hover {
+    transition: var(--default-transition);
+    transform: translateY(2px) scale(1.1);
+}
+
+#container #space #theme-icon:active {
+    transition: var(--default-transition);
+    transform: translateY(2px) scale(.7);
+}
+
+@media screen and (max-width: 500px) {
+    #container #space #theme-icon {
+        display: none;
+    }
+}
+
+#container #header {
+    transition: var(--default-transition);
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+}
+
+#container .blur {
+    background: var(--default-background);
+    z-index: 10;
+}
+
+#container #header #picture {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#container #header #picture img {
+    transition: var(--default-transition);
+    position: relative;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 800px) {
+    #container #header #picture img {
+        transition: var(--default-transition);
+        width: 40px;
+        height: 40px;
+    }
+}
+
+#container #filter {
+    transition: var(--default-transition);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 20px;
+    width: 90%;
+    overflow: auto;
+}
+
+@media screen and (max-width: 600px) {
+    #container #filter {
+        justify-content: start;
+        gap: 30px;
+    }
+}
+
+#container #filter i {
+    transition: var(--default-transition);
+    font-size: 13.5pt;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    text-wrap: nowrap;
+}
+
+#container #filter .filter-buttons {
+    transition: var(--default-transition);
+    position: relative;
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--default-color);
+    color: var(--button-color);
+    font-weight: 900;
+    opacity: var(--button-opacity);
+    border: 4px solid var(--default-color);
+    color: var(--button-color);
+}
+
+#container #filter .filter-buttons.active-choise {
+    transition: var(--default-transition);
+    cursor: pointer;
+    background: transparent;
+    box-shadow: inset 0 3px 10px var(--default-color),
+        inset 0 -3px 10px var(--default-color);
+    color: var(--default-color);
+}
+
+@media screen and (max-width: 600px) {
+    #container #filter .filter-buttons.active-choise {
+        transition: var(--default-transition);
+        box-shadow: 0 0 30px var(--default-color);
+    }
+}
+
+#container #filter .filter-buttons.active-choise:hover {
+    transition: var(--default-transition);
+    background: var(--default-color);
+    color: var(--button-color);
+}
+
+#container #filter .filter-buttons.active-choise::before {
+    transition: var(--default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--background);
+}
+
+#container #filter .filter-buttons.active-choise:hover:before {
+    transition: var(--default-transition);
+    left: 50%;
+    width: 0;
+}
+
+#container #filter .filter-buttons.active-choise::after {
+    transition: var(--default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--background);
+}
+
+#container #filter .filter-buttons.active-choise:hover::after {
+    transition: var(--default-transition);
+    left: 50%;
+    width: 0;
+}
+
+#container #filter .filter-buttons:active {
+    transition: var(--default-transition);
+    transform: scale(0.7);
+}
+
+#container #filter .filter-buttons:hover {
+    transition: var(--default-transition);
+    cursor: pointer;
+    background: transparent;
+    box-shadow: inset 0 3px 10px var(--default-color),
+        inset 0 -3px 10px var(--default-color);
+    color: var(--default-color);
+}
+
+#container #filter .filter-buttons::before {
+    transition: var(--default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--background);
+}
+
+#container #filter .filter-buttons:hover::before {
+    transition: var(--default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #filter .filter-buttons::after {
+    transition: var(--default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--background);
+}
+
+#container #filter .filter-buttons:hover::after {
+    transition: var(--default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container #content {
+    transition: var(--default-transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    gap: 30px;
+}
+
+#container #content .habitat {
+    transition: var(--default-transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 90%;
+    height: 350px;
+    text-align: justify;
+    margin: 20px 0;
+}
+
+#container #content .habitat:nth-child(odd) {
+    flex-direction: row;
+}
+
+#container #content .habitat:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+
+#container #content .habitat.no-choised {
+    transition: var(--default-transition);
+    display: none !important;
+}
+
+@media screen and (max-width: 600px) {
+    #container #content .habitat {
+        transition: var(--default-transition);
+        flex-direction: column !important;
+        height: 450px;
+        gap: 10px;
+    }
+
+    #container #content .habitat:hover {
+        transition: var(--default-transition);
+        transform: scale(1.05);
+    }
+}
+
+#container #content .habitat:first-child {
+    transition: var(--default-transition);
+    padding-top: 20px;
+}
+
+#container #content .habitat:not(:first-child) {
+    transition: var(--default-transition);
+    padding: 0 30px 0 10px;
+}
+
+#container .habitat .images {
+    transition: var(--default-transition);
+    position: relative;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    background-blend-mode: multiply;
+}
+
+@media screen and (max-width: 600px) {
+    #container .habitat .images {
+        transition: var(--default-transition);
+        width: 100%;
+        height: 60%;
+    }
+}
+
+#container .habitat .images .img {
+    transition: var(--default-transition);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+}
+
+#container .habitat .images .image-loader {
+    transition: var(--default-transition);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--background);
+    z-index: 2;
+    opacity: 1;
+}
+
+#container .habitat .images .image-loader.loader-hidden {
+    transition: all 1s ease-in-out;
+    opacity: 0 !important;
+    z-index: -1 !important;
+}
+
+#container .habitat .images .image-loader::before {
+    transition: var(--default-transition);
+    position: absolute;
+    content: "";
+    left: 45%;
+    top: 40%;
+    width: 40px;
+    height: 40px;
+    border: 10px solid var(--default-color);
+    border-left-color:  var(--scroll-background);
+    border-right-color:  var(--scroll-background);
+    border-radius: 50%;
+    animation: loader-animated 1s infinite linear;
+}
+
+@keyframes loader-animated {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#container .habitat .description {
+    transition: var(--default-transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    #container .habitat .description {
+        transition: var(--default-transition);
+        width: 100%;
+        height: 40%;
+        gap: 20px;
+    }
+}
+
+#container .habitat .description .text {
+    transition: var(--default-transition);
+    width: 100%;
+    height: 80%;
+    overflow: auto;
+    padding: 10px;
+}
+
+#container .habitat .description .text::-webkit-scrollbar {
+    background: var(--scroll-background);
+}
+
+#container .habitat .description .text::-webkit-scrollbar-thumb {
+    background: var(--scroll-color);
+    border-radius: 20px;
+}
+
+#container .habitat .description .button {
+    transition: var(--default-transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+}
+
+#container .habitat .description .button button {
+    transition: var(--default-transition);
+    position: relative;
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--default-color);
+    color: var(--button-color);
+    font-weight: 900;
+    opacity: var(--button-opacity);
+    border: 4px solid var(--default-color);
+    color: var(--button-color);
+}
+
+#container .habitat .description .button button:active a,
+#container .habitat .description .button button:active {
+    transition: var(--default-transition);
+    transform: scale(0.7);
+}
+
+#container .habitat .description .button button:hover {
+    transition: var(--default-transition);
+    cursor: pointer;
+    background: transparent;
+    box-shadow: 0 3px 10px var(--default-color);
+}
+
+#container .habitat .description .button button a {
+    transition: var(--default-transition);
+    color: var(--button-color);
+    font-size: 11pt;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: -10;
+    width: 100%;
+    height: 100%;
+}
+
+#container .habitat .description .button button:hover a,
+#container .habitat .description .button button:hover {
+    transition: var(--default-transition);
+    color: var(--default-color);
+}
+
+#container .habitat .description .button button::before {
+    transition: var(--default-transition);
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--background);
+}
+
+#container .habitat .description .button button:hover::before {
+    transition: var(--default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container .habitat .description .button button::after {
+    transition: var(--default-transition);
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--background);
+}
+
+#container .habitat .description .button button:hover::after {
+    transition: var(--default-transition);
+    content: "";
+    left: 0;
+    width: 100%;
+}
+
+#container .habitat .description .button button .fa {
+    transition: var(--default-transition);
+    position: absolute;
+    top: 12%;
+    left: 10px;
+    font-size: 15pt;
+}
+
+#container .ads {
+    transition: var(--default-transition);
+    position: relative;
+    width: 90%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+#container .ads.ads-hidden {
+    transition: var(--default-transition);
+    display: none !important;
+}
+
+#container .ads .info {
+    transition: var(--default-transition);
+    font-size: 14pt;
+    color: var(--default-color);
+}
+
+#container .ads .ads-img {
+    transition: var(--default-transition);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+}
+#container .ads .ads-img .ads-images {
+    transition: var(--default-transition);
+    width: 50%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    object-position: center;
+}
+
+#container .ads .ads-buttons {
+    transition: var(--default-transition);
+    position: absolute;
+    left: 0;
+    top: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    background: var(--ads-buttons-background);
+}
+
+#container .ads .ads-buttons:hover {
+    transition: var(--default-transition);
+    background: var(--scroll-background);
+}
+
+#container .ads .ads-buttons .fa {
+    transition: var(--default-transition);
+    font-size: 23pt;
+    opacity: .5;
+    color: var(--default-color);
+}
+
+#container .ads .ads-buttons .fa:hover {
+    transition: var(--default-transition);
+    transform: scale(1.2);
+}
+
+#container .ads .ads-buttons .fa:active {
+    transition: var(--default-transition);
+    transform: scale(.7) !important;
+}
+
+#container .ads:hover .ads-buttons .fa {
+    transition: var(--default-transition);
+    opacity: 1;
+}
+
+#container #scroll-top-button {
+    transition: var(--default-transition);
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    z-index: -1;
+    opacity: 0;
+}
+
+#container #scroll-top-button.show-button {
+    transition: var(--default-transition);
+    z-index: 10 !important;
+    opacity: .7 !important;
+}
+
+#container #scroll-top-button.show-button:hover {
+    transition: var(--default-transition);
+    transform: scale(1.1);
+}
+
+#container #scroll-top-button.show-button:active {
+    transition: var(--default-transition);
+    transform: scale(.7) !important;
+}
+
+#container #scroll-top-button .fa {
+    transition: var(--default-transition);
+    font-size: 33pt;
+    color: var(--default-color);
+}
+
+#container #scroll-last-position-button {
+    transition: var(--default-transition);
+    position: fixed;
+    bottom: 50px;
+    left: 20px;
+    z-index: -1;
+    opacity: 0;
+}
+
+#container #scroll-last-position-button.show-button {
+    transition: var(--default-transition);
+    z-index: 10 !important;
+    opacity: .6 !important;
+}
+
+#container #scroll-last-position-button.show-button:hover {
+    transition: var(--default-transition);
+    transform: scale(1.1);
+}
+
+#container #scroll-last-position-button.show-button:active {
+    transition: var(--default-transition);
+    transform: scale(.7) !important;
+}
+
+#container #scroll-last-position-button .fa {
+    transition: var(--default-transition);
+    font-size: 33pt;
+    color: var(--default-color);
+}
