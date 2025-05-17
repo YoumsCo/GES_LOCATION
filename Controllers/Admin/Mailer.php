@@ -2,6 +2,7 @@
 namespace Controllers\Admin;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
 
 require '../../vendor/autoload.php';
 
@@ -25,6 +26,9 @@ class Mailer
 
     function sendMail(): bool
     {
+        $dotenv = Dotenv::createImmutable(__DIR__."/../../");
+        $dotenv->load();
+        
         try {
             $this->mail->isSMTP();
             $this->mail->Host = $_ENV["SMTP_HOST"];

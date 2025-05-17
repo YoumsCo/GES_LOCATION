@@ -1,5 +1,7 @@
 <?php
 
+use Dotenv\Dotenv;
+
 if (file_get_contents("php://input")) {
     function checkData(string $option, string|int $data)
     {
@@ -32,6 +34,9 @@ if (file_get_contents("php://input")) {
 
     function db(): PDOException|PDO
     {
+        $dotenv = Dotenv::createImmutable(__DIR__ . "/../../");
+        $dotenv->load();
+
         $database = $_ENV["DB_NAME"];
         $user = $_ENV["USER"];
         $password = $_ENV["PASSWORD"];
@@ -68,11 +73,9 @@ if (file_get_contents("php://input")) {
             foreach ($user as $data) {
                 if ($data["nom"] === $nom && $data["email"] === $email && $data["role"] === "user") {
                     return true;
-                } 
-                else if ($data["nom"] === $nom && $data["email"] === $email && $data["role"] === "admin") {
+                } else if ($data["nom"] === $nom && $data["email"] === $email && $data["role"] === "admin") {
                     return "admin";
-                } 
-                else {
+                } else {
                     return false;
                 }
             }
@@ -140,8 +143,7 @@ if (file_get_contents("php://input")) {
 
             } else if (checkData("email", $datas["email"]) && isset($_COOKIE["login"]) && checkData("email", $_COOKIE["login"]) && check_user($nom, $_COOKIE["login"]) === "admin") {
                 echo json_encode("admin");
-            }
-            else {
+            } else {
                 echo json_encode("danger");
             }
 
