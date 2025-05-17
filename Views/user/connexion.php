@@ -13,10 +13,11 @@ if(isset($_COOKIE["login"])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login and Registration Form</title>
     <link rel="stylesheet" href=".././../Styles/connexion.css" />
     <link rel="stylesheet" href=".././../Styles/tools.css" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="icon" href="../../Icons/second.ico">
+    <title>GES_LOCATION | Authentication</title>
 </head>
 
 <body>

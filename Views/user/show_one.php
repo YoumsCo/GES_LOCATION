@@ -69,6 +69,7 @@ $files = $filesDatas->images($rep);
     <link rel="stylesheet" href="../../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+    <link rel="icon" href="../../Icons/second.ico">
     <title>GES-LOCATION | Un appart</title>
 </head>
 

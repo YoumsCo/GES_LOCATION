@@ -56,7 +56,7 @@ document.querySelector("#auth-form").addEventListener("submit", function (e) {
                 }, 6000);
             }
             else if (response === "admin") {
-                createHTMLElement("alert", "❌ Vous etes l'administrzateur) ❌");
+                createHTMLElement("alert", "❌ Vous êtes l'administrzateur) ❌");
             }
             else if (response === "preg_false") {
                 createHTMLElement("alert", "❌ Numéro(s) de téléphone rejétté(s) ❌");

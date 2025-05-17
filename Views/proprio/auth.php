@@ -40,6 +40,7 @@ foreach ($user->get_one("email", $_COOKIE["login"]) as $value) {
     <link rel="stylesheet" href="../../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/css/intlTelInput.css">
     <link rel="stylesheet" href="../../intl-tel-input-25.3.0/src/css/demo.scss">
+    <link rel="icon" href="../../Icons/second.ico">
     <title>GES-LOCATION | Authentification</title>
 </head>
 

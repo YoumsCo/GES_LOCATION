@@ -47,10 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if (checkData("email", $_POST['email'])) {
                 $email = parse(strtolower($_POST['email']));
-                
+
                 if (checkData("password", $_POST['password'])) {
                     $password = md5(parse($_POST['password']));
-                    
+
                     $user = new User();
 
                     $content = "😉 Inscription réussie.Un email vous a été envoyé.Consultez votre boite de reception ou vos spam 😉";
@@ -77,20 +77,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $alert = new Alert("Bienvenue :)", "../../Views/user/index.php");
                     $notification = new Notification();
 
-                    if (
-                        $mailer->sendMail()
-                        &&
-                        $alert->create_session("notification", $content)
-                        &&
-                        $create
-                    ) {
-                        setcookie("login", $email, [
-                            "expires" => time() + 10 * 365 * 24 * 60 * 60,
-                            "path" => "/",
-                        ]);
-                        $alert = new Alert("Bienvenue :)", "../../Views/user/index.php");
-                        $alert->message_action($email);
+                    if ($create) {
+                        if (
+                            $mailer->sendMail()
+                            &&
+                            $alert->create_session("notification", $content)
+                        ) {
+                            setcookie("login", $email, [
+                                "expires" => time() + 10 * 365 * 24 * 60 * 60,
+                                "path" => "/",
+                            ]);
+                            $alert = new Alert("Bienvenue :)", "../../Views/user/index.php");
+                            $alert->message_action($email);
 
+                        } else {
+                            $alert = $_SERVER["HTTP_REFERER"] ? new Alert("Une erreur est survenue !!", $_SERVER["HTTP_REFERER"]) : new Alert("Une erreur est survenue !!", "../../Views/user/index.php");
+                            $alert->show_message();
+                        }
                     } else {
                         $alert = $_SERVER["HTTP_REFERER"] ? new Alert("Compte déjà existant !!", $_SERVER["HTTP_REFERER"]) : new Alert("Compte déjà existant !!", "../../Views/user/index.php");
                         $alert->show_message();

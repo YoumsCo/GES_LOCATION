@@ -42,6 +42,7 @@ $typeDatas = $types->get_types();
     <link rel="stylesheet" href="../../Styles/admin/Type/index.css">
     <link rel="stylesheet" href="../../Styles/tools.css">
     <link rel="stylesheet" href="../../font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="../../Icons/second.ico">
     <title>GES-LOCATION | Gestion des types</title>
 </head>
 

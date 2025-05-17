@@ -32,14 +32,14 @@ class Mailer
         try {
             $this->mail->isSMTP();
             $this->mail->Host = $_ENV["SMTP_HOST"];
-            $this->mail->SMTPAuth = $_ENV["SMTP_SMTP_AUTH"];
+            $this->mail->SMTPAuth = $_ENV["SMTP_AUTH"];
             $this->mail->Username = $_ENV["SMTP_USER_NAME"];
-            $this->mail->Password = $_ENV["SMTP_PASSWORD"];
+            $this->mail->Password = $_ENV["SMTP_USER_PASSWORD"];
             $this->mail->SMTPSecure = $_ENV["SMTP_SMTP_SECURE"];
             $this->mail->Port = $_ENV["SMTP_PORT"];
             $this->mail->CharSet = $_ENV["SMTP_CHARSET"];
 
-            $this->mail->setFrom("youmschoco@gmail.com", "GEST_LOCATION");
+            $this->mail->setFrom($_ENV["SMTP_USER_NAME"], $_ENV["APP_NAME"]);
             $this->mail->addAddress($this->user_email, $this->user_name);
             $this->mail->isHTML(true);
 

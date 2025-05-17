@@ -32,6 +32,7 @@ foreach ($user->get_one("email", parse($_COOKIE['login'])) as $data) {
     <link rel="stylesheet" href="../../Styles/notification.css">
     <link rel="stylesheet" href="../../Styles/tools.css">
     <link rel="stylesheet" href="../../font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="../../Icons/second.ico">
     <title>GES-LOCATION | Notifications</title>
 </head>
 
